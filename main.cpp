@@ -1,14 +1,5 @@
-/*******************************************************************************************
-*
-*   window - tool description
-*
-*   LICENSE: zlib/libpng
-*
-*   Copyright (c) 2018 raylib technologies
-*
-**********************************************************************************************/
-
 #include "raylib.h"
+#include "player.cpp"
 
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
@@ -23,7 +14,10 @@ int main() {
 
     SetTargetFPS(30);
 
-    while (!WindowShouldClose()) {
+    Player player;
+
+    while (!WindowShouldClose() && player.wantedLevel() < 100) {
+
         BeginDrawing();
 
             ClearBackground(BLACK);
