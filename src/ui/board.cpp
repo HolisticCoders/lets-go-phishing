@@ -1,11 +1,10 @@
 #include <string>
 
 #include "raylib.h"
-
-#define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
 
 #include "../player.cpp"
+#include "button.cpp"
 
 
 class GUI_Board {
@@ -51,9 +50,30 @@ class GUI_Board {
 
             const char* money = std::to_string(m_player->money()).c_str();
             GuiLabel((Rectangle){ 1045, 635, 161, 25 }, money);
+
+            button01.update();
+            button02.update();
+            button03.update();
+            button04.update();
         }
 
     private:
         Player* m_player;
         bool m_closing = false;
+        GUI_Button button01 = GUI_Button(
+            "E-Mail 01",
+            (Rectangle){ 35, 655, 93, 30 }
+        );
+        GUI_Button button02 = GUI_Button(
+            "E-Mail 02",
+            (Rectangle){ 138, 655, 93, 30 }
+        );
+        GUI_Button button03 = GUI_Button(
+            "E-Mail 03",
+            (Rectangle){ 241, 655, 93, 30 }
+        );
+        GUI_Button button04 = GUI_Button(
+            "E-Mail 04",
+            (Rectangle){ 344, 655, 93, 30 }
+        );
 };
