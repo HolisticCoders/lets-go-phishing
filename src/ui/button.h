@@ -19,6 +19,7 @@ class GUI_Button {
         GUI_Button();
         GUI_Button(const string& label);
         GUI_Button(const string& label, const Rectangle& area);
+        ~GUI_Button();
         void update();
         virtual void onClick();
         string label() {return m_label;}
@@ -28,7 +29,7 @@ class GUI_Button {
         void setPosition(const Vector2& position);
         void setSize(const Vector2& size);
         void setArea(const Rectangle& area) {m_area = area;}
-        void setMail(Mail& mail) {m_mail = &mail;}
+        void setMail(Mail* mail);
         void setBoard(GUI_Board& board) {m_board = &board;}
     private:
         string m_label;
