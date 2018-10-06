@@ -22,7 +22,16 @@ int main() {
     GUI_Board board;
     board.setPlayer(&player);
 
-    while (!WindowShouldClose() || !board.closing()) {
+    while (true) {
+
+        if (WindowShouldClose() || board.closing()) {
+            // TODO: User message box confirmation.
+            break;
+        }
+        if (player.wantedLevel() >= 100) {
+            // TODO: Game Over panel then quit.
+            break;
+        }
 
         BeginDrawing();
 
