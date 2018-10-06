@@ -52,4 +52,4 @@ enum SpamCategories {
     Finance,
     Adult,
     Products,
-},
+};
