@@ -10,6 +10,7 @@
 
 using namespace std;
 
+
 GUI_Board::GUI_Board(Player* player) : m_player{player} {
     // button setup
     m_buttons[0] = new GUI_Button(
@@ -89,5 +90,10 @@ void GUI_Board::update() {
 // Draw mails and attache them to buttons
 // until we have four mails available.
 void GUI_Board::drawMails() {
-    
+    for (GUI_Button* button: m_buttons) {
+        if (button->mail()) {
+            continue;
+        }
+        cout << "Drawing mail for button " << button->label() << endl;
+    }
 }
