@@ -37,10 +37,7 @@ class GUI_Board {
         Player* m_player;
         Mail* m_mail = nullptr;
         bool m_closing = false;
-        GUI_Button* m_button01;
-        GUI_Button* m_button02;
-        GUI_Button* m_button03;
-        GUI_Button* m_button04;
+        GUI_Button* m_buttons[4];
 };
 
 #endif
