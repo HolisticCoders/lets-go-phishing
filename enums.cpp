@@ -1,3 +1,5 @@
+// Sampled from nice website:
+// https://www.123test.com/professions/
 enum Professions {
     Teacher,
     Scientist,
@@ -37,3 +39,17 @@ enum MaritalStatus {
     Divorced,
     Widowed,
 };
+
+// This was taken from here:
+// https://www.statista.com/statistics/263452/most-common-content-of-spam-messages-worldwide-by-category/
+enum SpamCategories {
+    Malware,
+    HealthCare,
+    Dating,
+    Stocks,
+    Jobs,
+    Phishing,
+    Finance,
+    Adult,
+    Products,
+},
