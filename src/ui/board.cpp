@@ -9,19 +9,19 @@
 
 
 GUI_Board::GUI_Board() : m_player{nullptr} {
-    m_button01 = new GUI_Button(
+    m_buttons[0] = new GUI_Button(
         "E-Mail 01",
         (Rectangle){ 35, 655, 93, 30 }
     );
-    m_button02 = new GUI_Button(
+    m_buttons[1] = new GUI_Button(
         "E-Mail 02",
         (Rectangle){ 138, 655, 93, 30 }
     );
-    m_button03 = new GUI_Button(
+    m_buttons[2] = new GUI_Button(
         "E-Mail 03",
         (Rectangle){ 241, 655, 93, 30 }
     );
-    m_button04 = new GUI_Button(
+    m_buttons[3] = new GUI_Button(
         "E-Mail 04",
         (Rectangle){ 344, 655, 93, 30 }
     );
@@ -29,19 +29,19 @@ GUI_Board::GUI_Board() : m_player{nullptr} {
 
 
 GUI_Board::GUI_Board(Player* player) : m_player{player} {
-    m_button01 = new GUI_Button(
+    m_buttons[0] = new GUI_Button(
         "E-Mail 01",
         (Rectangle){ 35, 655, 93, 30 }
     );
-    m_button02 = new GUI_Button(
+    m_buttons[1] = new GUI_Button(
         "E-Mail 02",
         (Rectangle){ 138, 655, 93, 30 }
     );
-    m_button03 = new GUI_Button(
+    m_buttons[2] = new GUI_Button(
         "E-Mail 03",
         (Rectangle){ 241, 655, 93, 30 }
     );
-    m_button04 = new GUI_Button(
+    m_buttons[3] = new GUI_Button(
         "E-Mail 04",
         (Rectangle){ 344, 655, 93, 30 }
     );
@@ -49,10 +49,11 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
 
 
 GUI_Board::~GUI_Board() {
-    delete m_button01;
-    delete m_button02;
-    delete m_button03;
-    delete m_button04;
+    for (GUI_Button* button: m_buttons) {
+        if (button) {
+            delete button;
+        }
+    }
 }
 
 
@@ -74,17 +75,11 @@ void GUI_Board::update() {
     const char* money = std::to_string(m_player->money()).c_str();
     GuiLabel((Rectangle){ 1045, 635, 161, 25 }, money);
 
-    if (m_button01) {
-        m_button01->update();
-    }
-    if (m_button02) {
-        m_button02->update();
-    }
-    if (m_button03) {
-        m_button03->update();
-    }
-    if (m_button04) {
-        m_button04->update();
+    for (GUI_Button* button: m_buttons) {
+        if (!button) {
+            continue;
+        }
+        button->update();
     }
 
     if (m_mail) {
