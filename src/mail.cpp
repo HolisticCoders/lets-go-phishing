@@ -14,11 +14,9 @@ class Mail {
             m_category = Phishing;
         }
 
-        Mail(const string& title, const string& content, const SpamCategories& category) {
-            m_title = title;
-            m_content = content;
-            m_category = category;
-        }
+        Mail(const string& title, const string& content, const SpamCategories& category)
+            : m_title{title}, m_content{content}, m_category{category}
+        {}
 
         // Accessors
         string title() {
