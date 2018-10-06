@@ -1,3 +1,5 @@
+#ifndef ENUMS_H
+#define ENUMS_H
 // Sampled from nice website:
 // https://www.123test.com/professions/
 enum Professions {
@@ -53,3 +55,4 @@ enum SpamCategories {
     Adult,
     Products,
 };
+#endif
