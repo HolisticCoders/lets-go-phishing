@@ -1,14 +1,19 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 
+#include "json.hpp"
 #include "raylib.h"
 #include "raygui.h"
 
 #include "../player.h"
+#include "../mail.h"
 #include "board.h"
 #include "button.h"
 
+
 using namespace std;
+using namespace nlohmann;
 
 
 GUI_Board::GUI_Board(Player* player) : m_player{player} {
@@ -29,6 +34,10 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
         "E-Mail 04",
         (Rectangle){ 344, 655, 93, 30 }
     );
+
+    for (GUI_Button* button: m_buttons) {
+        button->setBoard(*this);
+    }
 
     // tweets setup
     // 1st tweet y position
@@ -71,6 +80,8 @@ void GUI_Board::update() {
     const char* money = std::to_string(m_player->money()).c_str();
     GuiLabel((Rectangle){ 1045, 635, 161, 25 }, money);
 
+    drawMails();
+
     for (GUI_Button* button: m_buttons) {
         if (!button) {
             continue;
@@ -87,7 +98,7 @@ void GUI_Board::update() {
 }
 
 
-// Draw mails and attache them to buttons
+// Draw mails and attach them to buttons
 // until we have four mails available.
 void GUI_Board::drawMails() {
     for (GUI_Button* button: m_buttons) {
@@ -95,5 +106,15 @@ void GUI_Board::drawMails() {
             continue;
         }
         cout << "Drawing mail for button " << button->label() << endl;
+        ifstream input("../resources/mails.json");
+        json mailData;
+        input >> mailData;
+        int index = GetRandomValue(0, mailData.size() - 1);
+        Mail* mail = new Mail(
+            mailData[index]["title"],
+            mailData[index]["content"],
+            mailData[index]["category"]
+        );
+        button->setMail(mail);
     }
 }

@@ -22,6 +22,12 @@ GUI_Button::GUI_Button(const string& label, const Rectangle& area)
     : m_label{label}, m_area{area}
 {}
 
+GUI_Button::~GUI_Button() {
+    if (m_mail) {
+        delete m_mail;
+    }
+}
+
 void GUI_Button::update() {
     if (GuiButton(area(), label().c_str())) {
         onClick();
@@ -37,6 +43,7 @@ void GUI_Button::onClick() {
         cout << "No attached e-mail to set on board." << endl;
         return;
     }
+    cout << "Displaying E-Mail " << endl;
     m_board->setMail(m_mail);
 }
 
@@ -46,5 +53,13 @@ void GUI_Button::setPosition(const Vector2& position) {
 
 void GUI_Button::setSize(const Vector2& size) {
     m_area = (Rectangle){ m_area.x, m_area.y, size.x, size.y};
+}
+
+void GUI_Button::setMail(Mail* mail) {
+    // Delete the previous mail pointer.
+    if (m_mail) {
+        delete m_mail;
+    }
+    m_mail = mail;
 }
 
