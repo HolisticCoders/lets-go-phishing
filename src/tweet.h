@@ -1,3 +1,6 @@
+#ifndef TWEET_H
+#define TWEET_H
+
 #include <string>
 #include "victim.h"
 
@@ -33,4 +36,4 @@ class Tweet {
         Victim* m_author;  // This is made possible by the forward declaration.
         string m_content;
 };
-
+#endif

@@ -1,3 +1,6 @@
+#ifndef VICTIM_H
+#define VICTIM_H
+
 #include <string>
 #include "enums.h"
 
@@ -32,3 +35,4 @@ class Victim {
         int m_children;
         int m_money;
 };
+#endif
