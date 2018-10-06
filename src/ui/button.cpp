@@ -8,23 +8,19 @@
 using namespace std;
 
 
-class Button {
+class GUI_Button {
     public:
-        Button() {
+        GUI_Button() {
             m_label = "Button";
             m_area = (Rectangle){ 0, 0, 100, 30};
         }
-        Button(const string& label) {
-            m_label = label;
+        GUI_Button(const string& label) : m_label{label} {
             m_area = (Rectangle){ 0, 0, 100, 30};
         }
-        Button(const Rectangle& area) {
+        GUI_Button(const Rectangle& area) :m_area{area} {
             m_label = "Button";
-            m_area = area;
         }
-        Button(const string& label, const Rectangle& area) {
-            m_label = label;
-            m_area = area;
+        GUI_Button(const string& label, const Rectangle& area) : m_label{label}, m_area{area} {
         }
         void update() {
             if (GuiButton(area(), label().c_str())) {
