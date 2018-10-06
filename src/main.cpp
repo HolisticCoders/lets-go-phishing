@@ -14,7 +14,7 @@ int main() {
     SetTargetFPS(30);
 
     Player player;
-    Board board;
+    GUI_Board board;
     board.setPlayer(&player);
 
     while (!WindowShouldClose() || !board.closing()) {

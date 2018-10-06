@@ -8,14 +8,14 @@
 #include "../player.cpp"
 
 
-class Board {
+class GUI_Board {
     public:
 
         // Constructors
-        Board() {
+        GUI_Board() {
             m_player = nullptr;
         }
-        Board(Player* player) : m_player{player} {}
+        GUI_Board(Player* player) : m_player{player} {}
 
         // Accessors.
         Player* player() {
