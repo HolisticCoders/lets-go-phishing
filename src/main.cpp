@@ -4,6 +4,11 @@
 #include "ui/board.cpp"
 
 
+// Keep this one AFTER all others to avoid redefinitions.
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
+
+
 int main() {
 
     const int screenWidth = 1280;

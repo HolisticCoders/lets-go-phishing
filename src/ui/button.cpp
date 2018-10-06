@@ -1,8 +1,6 @@
 #include <string>
 
 #include "raylib.h"
-
-#define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
 
 using namespace std;
