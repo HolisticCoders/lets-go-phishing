@@ -17,9 +17,6 @@ class GUI_Button {
         GUI_Button(const string& label) : m_label{label} {
             m_area = (Rectangle){ 0, 0, 100, 30};
         }
-        GUI_Button(const Rectangle& area) :m_area{area} {
-            m_label = "Button";
-        }
         GUI_Button(const string& label, const Rectangle& area) : m_label{label}, m_area{area} {
         }
         void update() {
@@ -44,6 +41,6 @@ class GUI_Button {
             m_area = area;
         }
     private:
-        Rectangle m_area;
         string m_label;
+        Rectangle m_area;
 };
