@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 
 #include "raylib.h"
@@ -25,6 +26,18 @@ void GUI_Button::update() {
     if (GuiButton(area(), label().c_str())) {
         onClick();
     }
+}
+
+void GUI_Button::onClick() {
+    if (!m_board) {
+        cout << "No board to set attached e-mail to." << endl;
+        return;
+    }
+    if (!m_mail) {
+        cout << "No attached e-mail to set on board." << endl;
+        return;
+    }
+    m_board->setMail(m_mail);
 }
 
 void GUI_Button::setPosition(const Vector2& position) {

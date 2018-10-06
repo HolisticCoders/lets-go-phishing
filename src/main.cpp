@@ -1,7 +1,7 @@
 #include "raylib.h"
 
-#include "mail.cpp"
-#include "ui/board.cpp"
+#include "mail.h"
+#include "ui/board.h"
 
 
 // Keep this one AFTER all others to avoid redefinitions.
