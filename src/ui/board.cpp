@@ -40,14 +40,23 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
         m_guiTweets[i]->setY(y);
         y += m_guiTweets[i]->height() + 10;
     }
+
+    // mail setup
+    m_guiMail = new GUI_Mail();
+    m_guiMail->setMail(m_mail);
 }
 
 
 GUI_Board::~GUI_Board() {
+    delete m_guiMail;
     for (GUI_Button* button: m_buttons) {
         if (button) {
             delete button;
         }
+    }
+    for (int i = 0; i < 5; i++) {
+        delete m_tweets[i];
+        delete m_guiTweets[i];
     }
 }
 
@@ -77,9 +86,12 @@ void GUI_Board::update() {
         button->update();
     }
 
-    if (m_mail) {
-        DrawText(m_mail->title().c_str(), 35, 60, 12, (Color){ 63, 63, 63, 255 });
-    }
+    /* if (m_mail) { */
+    /*     DrawText(m_mail->title().c_str(), 35, 60, 12, (Color){ 63, 63, 63, 255 }); */
+    /* } */
+
+    if (m_mail)
+        m_guiMail->update();
 
     for (int i=0; i<5; i++)
         m_guiTweets[i]->update();

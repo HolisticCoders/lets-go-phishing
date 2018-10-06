@@ -9,7 +9,10 @@
 #include "../player.h"
 #include "../mail.h"
 #include "../tweet.h"
+
+//ui includes
 #include "tweet.h"
+#include "mail.h"
 
 class GUI_Button;
 
@@ -41,6 +44,7 @@ class GUI_Board {
         GUI_Button* m_buttons[4];
         Tweet* m_tweets[5];
         GUI_Tweet* m_guiTweets[5];
+        GUI_Mail* m_guiMail;
 };
 
 #endif
