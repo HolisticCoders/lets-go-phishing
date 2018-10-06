@@ -5,7 +5,7 @@
 
 void GUI_Mail::update() {
     char* title = (char*)m_mail->title().c_str();
-    GuiTextBoxMulti(getContentBounds(), title, 10, false);
+    GuiLabel(getTitleBounds(), title);
     char* content = (char*)m_mail->content().c_str();
-    GuiLabel(getTitleBounds(), content);
+    GuiTextBoxMulti(getContentBounds(), content, 10, false);
 }

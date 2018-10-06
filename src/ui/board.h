@@ -30,7 +30,10 @@ class GUI_Board {
 
         // Mutators
         void setPlayer(Player* player) {m_player = player;}
-        void setMail(Mail* mail) {m_mail = mail;}
+        void setMail(Mail* mail) {
+            m_mail = mail;
+            m_guiMail->setMail(mail);
+        }
         void setClosing(const bool& closing) {m_closing = closing;}
 
         // Member functions
