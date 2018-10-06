@@ -1,5 +1,5 @@
 #include <string>
-#include "enums.cpp"
+#include "enums.h"
 
 using namespace std;
 
