@@ -8,6 +8,8 @@
 
 #include "../player.h"
 #include "../mail.h"
+#include "../tweet.h"
+#include "tweet.h"
 
 class GUI_Button;
 
@@ -15,7 +17,6 @@ class GUI_Board {
     public:
 
         // Constructors
-        GUI_Board();
         GUI_Board(Player* player);
         ~GUI_Board();
 
@@ -38,6 +39,8 @@ class GUI_Board {
         Mail* m_mail = nullptr;
         bool m_closing = false;
         GUI_Button* m_buttons[4];
+        Tweet* m_tweets[5];
+        GUI_Tweet* m_guiTweets[5];
 };
 
 #endif

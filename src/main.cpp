@@ -1,8 +1,9 @@
 #include "raylib.h"
 
 #include "mail.h"
-#include "ui/board.h"
+#include "victim.h"
 
+#include "ui/board.h"
 
 // Keep this one AFTER all others to avoid redefinitions.
 #define RAYGUI_IMPLEMENTATION
@@ -19,8 +20,9 @@ int main() {
     SetTargetFPS(30);
 
     Player player;
-    GUI_Board board;
-    board.setPlayer(&player);
+    GUI_Board board(&player);
+
+    Victim victim;
 
     while (true) {
 

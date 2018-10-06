@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 
 #include "raylib.h"
@@ -7,28 +8,10 @@
 #include "board.h"
 #include "button.h"
 
-
-GUI_Board::GUI_Board() : m_player{nullptr} {
-    m_buttons[0] = new GUI_Button(
-        "E-Mail 01",
-        (Rectangle){ 35, 655, 93, 30 }
-    );
-    m_buttons[1] = new GUI_Button(
-        "E-Mail 02",
-        (Rectangle){ 138, 655, 93, 30 }
-    );
-    m_buttons[2] = new GUI_Button(
-        "E-Mail 03",
-        (Rectangle){ 241, 655, 93, 30 }
-    );
-    m_buttons[3] = new GUI_Button(
-        "E-Mail 04",
-        (Rectangle){ 344, 655, 93, 30 }
-    );
-}
-
+using namespace std;
 
 GUI_Board::GUI_Board(Player* player) : m_player{player} {
+    // button setup
     m_buttons[0] = new GUI_Button(
         "E-Mail 01",
         (Rectangle){ 35, 655, 93, 30 }
@@ -45,6 +28,18 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
         "E-Mail 04",
         (Rectangle){ 344, 655, 93, 30 }
     );
+
+    // tweets setup
+    // 1st tweet y position
+    int y = 60;
+    for (int i = 0; i < 5; i++) {
+        m_tweets[i] = new Tweet();
+        m_guiTweets[i] = new GUI_Tweet();
+        m_guiTweets[i]->setTweet(m_tweets[i]);
+        m_guiTweets[i]->setX(935);
+        m_guiTweets[i]->setY(y);
+        y += m_guiTweets[i]->height() + 10;
+    }
 }
 
 
@@ -85,6 +80,9 @@ void GUI_Board::update() {
     if (m_mail) {
         DrawText(m_mail->title().c_str(), 35, 60, 12, (Color){ 63, 63, 63, 255 });
     }
+
+    for (int i=0; i<5; i++)
+        m_guiTweets[i]->update();
 }
 
 
