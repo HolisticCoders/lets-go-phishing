@@ -8,6 +8,12 @@ class Mail {
     public:
 
         // Constructors
+        Mail() {
+            m_title = "";
+            m_content = "";
+            m_category = Phishing;
+        }
+
         Mail(const string& title, const string& content, const SpamCategories& category) {
             m_title = title;
             m_content = content;
