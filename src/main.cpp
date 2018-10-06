@@ -1,7 +1,10 @@
 #include "raylib.h"
 
 #include "mail.h"
+#include "victim.h"
+
 #include "ui/board.h"
+#include "ui/tweet.h"
 
 
 // Keep this one AFTER all others to avoid redefinitions.
@@ -22,6 +25,24 @@ int main() {
     GUI_Board board;
     board.setPlayer(&player);
 
+    Victim victim;
+
+    Tweet tweet(&victim, "Hello, this is a tweet");
+
+    const int tweetCount = 5;
+    GUI_Tweet GUI_tweets[tweetCount];
+
+    // 1st tweet y position
+    int y = 60;
+    for(int i=0; i < tweetCount; i++) {
+
+        GUI_tweets[i].setX(935);
+        GUI_tweets[i].setY(y);
+        GUI_tweets[i].setTweet(&tweet);
+    
+        y += GUI_tweets[i].height() + 10;
+    }
+
     while (true) {
 
         if (WindowShouldClose() || board.closing()) {
@@ -38,6 +59,9 @@ int main() {
             ClearBackground(GetColor(style[DEFAULT_BACKGROUND_COLOR]));
 
             board.update();
+            for (GUI_Tweet tweet: GUI_tweets){
+                tweet.update();
+            }
 
         EndDrawing();
     }
