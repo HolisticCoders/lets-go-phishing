@@ -81,6 +81,33 @@ GUI_Board::~GUI_Board() {
 }
 
 void GUI_Board::update() {
+    if (m_turnResults) {
+        const float dialogWidth = 350;
+        const float dialogHeight = 150;
+        const Rectangle dialogBounds {
+            (GetScreenWidth() - dialogWidth) / 2,
+            (GetScreenHeight() - dialogHeight) / 2,
+            dialogWidth,
+            dialogHeight
+        };
+        const float buttonWidth = 120;
+        const float buttonHeight = 35;
+        const Rectangle buttonBounds {
+            dialogBounds.x + dialogWidth - buttonWidth - 10,
+            dialogBounds.y + dialogHeight - buttonHeight - 10,
+            buttonWidth,
+            buttonHeight
+        };
+        GuiWindowBox(dialogBounds, "Turn Results");
+        bool unpause = GuiButton(buttonBounds, "Next Turn");
+        if (unpause) {
+            m_manager.unpause();
+            m_turnResults = nullptr;
+        }
+    }
+    if (m_manager.isPaused()) {
+        return;
+    }
     if (GuiWindowBox((Rectangle){ 0, 0, 1280, 720 }, "Let's go phishing!")) {
         setClosing(true);
     }
@@ -114,7 +141,7 @@ void GUI_Board::update() {
 }
 
 void GUI_Board::showResults(Results& results) {
-    cout << "Reward: " << results.money << endl;
-    cout << "Wanted Level: " << results.wantedLevel << endl;
+    m_manager.pause();
+    m_turnResults = &results;
 }
 

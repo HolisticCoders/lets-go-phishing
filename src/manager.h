@@ -68,6 +68,12 @@ class Manager {
         void setMail(Mail* mail) { m_mail = mail; }
         void setBoard(GUI_Board* board) { m_board = board; }
 
+        // Game control flow.
+        bool isPaused() { return m_isPaused; }
+        void pause() { m_isPaused = true; };
+        void unpause() { m_isPaused = false; }
+        void togglePause() { m_isPaused = m_isPaused ? false: true; }
+        void setPause(const bool& paused) { m_isPaused = paused; }
         void drawMails();
         void drawTweets();
         void shuffleMails();
@@ -78,6 +84,8 @@ class Manager {
 
     private:
         Manager();
+
+        bool m_isPaused = false;
 
         Resources* m_resources = nullptr;
         // All these pointers will be loaded at startup,

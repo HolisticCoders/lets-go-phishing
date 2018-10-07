@@ -36,6 +36,7 @@ class GUI_Board {
     private:
         Manager& m_manager = Manager::getInstance();
         bool m_closing = false;
+        Results* m_turnResults = nullptr;
         GUI_Button* m_buttons[4];
         GUI_Tweet* m_guiTweets[5];
         GUI_Mail* m_guiMail;
