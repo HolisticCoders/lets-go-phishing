@@ -47,16 +47,19 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
     // 1st tweet y position
     int y = 60;
     for (int i = 0; i < 5; i++) {
-        m_tweets[i] = new Tweet();
+        /* m_tweets[i] = new Tweet(); */
         m_guiTweets[i] = new GUI_Tweet();
-        m_guiTweets[i]->setTweet(m_tweets[i]);
+        /* m_guiTweets[i]->setTweet(m_tweets[i]); */
         m_guiTweets[i]->setX(935);
         m_guiTweets[i]->setY(y);
         y += m_guiTweets[i]->height() + 10;
     }
 
+    // Resource access setup.
+    m_resources = new Resources("../resources/");
+
     // mail setup
-    m_guiMail = new GUI_Mail();
+    m_guiMail = new GUI_Mail(this);
     m_guiMail->setMail(m_mail);
 
     // profile setup
@@ -67,6 +70,7 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
 
 
 GUI_Board::~GUI_Board() {
+    delete m_resources;
     delete m_guiMail;
     delete m_victim;
     for (GUI_Button* button: m_buttons) {
@@ -78,6 +82,13 @@ GUI_Board::~GUI_Board() {
         delete m_tweets[i];
         delete m_guiTweets[i];
     }
+}
+
+
+void GUI_Board::endTurn() {
+    Victim* victim = m_guiProfile->victim();
+    Mail* mail = m_guiMail->mail();
+    cout << "Sending mail " << mail->title() << " to " << victim->name() << endl;
 }
 
 
@@ -100,6 +111,7 @@ void GUI_Board::update() {
     GuiLabel((Rectangle){ 1045, 635, 161, 25 }, money);
 
     drawMails();
+    drawTweets();
 
     for (GUI_Button* button: m_buttons) {
         if (!button) {
@@ -107,10 +119,6 @@ void GUI_Board::update() {
         }
         button->update();
     }
-
-    /* if (m_mail) { */
-    /*     DrawText(m_mail->title().c_str(), 35, 60, 12, (Color){ 63, 63, 63, 255 }); */
-    /* } */
 
     if (m_mail)
         m_guiMail->update();
@@ -123,6 +131,11 @@ void GUI_Board::update() {
 }
 
 
+void GUI_Board::loadData() {
+    
+}
+
+
 // Draw mails and attach them to buttons
 // until we have four mails available.
 void GUI_Board::drawMails() {
@@ -131,15 +144,45 @@ void GUI_Board::drawMails() {
             continue;
         }
         cout << "Drawing mail for button " << button->label() << endl;
-        ifstream input("../resources/mails.json");
-        json mailData;
-        input >> mailData;
-        int index = GetRandomValue(0, mailData.size() - 1);
+        json data = m_resources->getResource("mails.json");
+        if (data.size() <= 0) {
+            cout << "No mail could be drawn." << endl;
+            return;
+        }
+        int index = GetRandomValue(0, data.size() - 1);
         Mail* mail = new Mail(
-            mailData[index]["title"],
-            mailData[index]["content"],
-            mailData[index]["category"]
+            data[index]["title"],
+            data[index]["content"],
+            data[index]["category"]
         );
         button->setMail(mail);
     }
 }
+
+
+void GUI_Board::drawTweets() {
+    for (GUI_Tweet* tweet: m_guiTweets) {
+        if (tweet->tweet()) {
+            continue;
+        }
+        cout << "Drawing content for tweet." << endl;
+        json data = m_resources->getResource("tweets.json");
+        if (data.size() <= 0) {
+            cout << "No tweet could be drawn." << endl;
+            return;
+        }
+        int index = GetRandomValue(0, data.size() - 1);
+        const string victimName = data[index]["author"];
+        const string content = data[index]["content"];
+
+        // Find the victim in the victims.json.
+        Victim* victim = new Victim();
+        victim->setName(victimName);
+        Tweet* tweetData = new Tweet(
+            victim,
+            content
+        );
+        tweet->setTweet(tweetData);
+    }
+}
+

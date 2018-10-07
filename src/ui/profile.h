@@ -9,6 +9,7 @@ class GUI_Profile {
         GUI_Profile(){};
         void update();
 
+        Victim* victim() { return m_victim; }
         void setVictim(Victim* victim) {
             m_victim = victim;
         }

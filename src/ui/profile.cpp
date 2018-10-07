@@ -70,11 +70,11 @@ void GUI_Profile::update(){
     GuiLabel(nameBounds(), name);
 
     /* char* profession = (char*)m_victim->profession().c_str(); */
-    char* profession = "Cook";
+    char* profession = (char*)"Cook";
     GuiLabel(professionBounds(), profession);
 
     /* char* maritalStatus = (char*)m_victim->maritalStatus().c_str(); */
-    char* maritalStatus = "Married";
+    char* maritalStatus = (char*)"Married";
     GuiLabel(maritalStatusBounds(), maritalStatus);
 
     char* children = (char*)std::to_string(m_victim->children()).c_str();

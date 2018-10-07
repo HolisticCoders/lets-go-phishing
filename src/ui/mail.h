@@ -4,14 +4,17 @@
 #include "raylib.h"
 #include "../mail.h"
 
+class GUI_Board;
+
+
 class GUI_Mail{
     public:
-        GUI_Mail(){};
+        GUI_Mail(GUI_Board* board) : m_board{board} {};
         void update();
         void sendMail();
-        void setMail(Mail* mail) {
-            m_mail = mail;
-        }
+
+        GUI_Board* board() { return m_board; }
+        Mail* mail() { return m_mail; }
         Rectangle getTitleBounds(){
             const float x = m_x;
             const float y = m_y;
@@ -33,6 +36,11 @@ class GUI_Mail{
             const float y = m_y;
             return (Rectangle){x, y, width, height};
         }
+
+        void setBoard(GUI_Board* board) { m_board = board; }
+        void setMail(Mail* mail) {
+            m_mail = mail;
+        }
     private:
         int m_x = 35;
         int m_y = 60;
@@ -40,6 +48,7 @@ class GUI_Mail{
         int m_height = 530;
         Color m_color = LIGHTGRAY;
         Mail* m_mail = nullptr;
+        GUI_Board* m_board = nullptr;
 };
 
 #endif

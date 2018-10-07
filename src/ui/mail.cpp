@@ -1,10 +1,15 @@
-#include "mail.h"
+#include <iostream>
+
 #include "raylib.h"
 #include "raygui.h"
-#include <iostream>
+
+#include "mail.h"
+#include "board.h"
+
 
 void GUI_Mail::sendMail(){
     std::cout << "Sending Mail" << std::endl;
+    m_board->endTurn();
 }
 
 void GUI_Mail::update() {

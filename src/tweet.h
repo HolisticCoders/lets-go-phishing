@@ -12,7 +12,7 @@ class Tweet {
         // Constructors
         Tweet() : m_author{nullptr}, m_content{""} {}
 
-        Tweet(Victim* author, const string& content)
+        Tweet(Victim* author, const string content)
             : m_author{author}, m_content{content}
         {}
 
@@ -28,7 +28,7 @@ class Tweet {
         void setAuthor(Victim* author) {
             m_author = author;
         }
-        void setContent(const string& content) {
+        void setContent(const string content) {
             m_content = content;
         }
 

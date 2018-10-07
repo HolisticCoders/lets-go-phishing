@@ -2,7 +2,6 @@
 #define VICTIM_H
 
 #include <string>
-#include "enums.h"
 
 using namespace std;
 
@@ -13,14 +12,14 @@ class Victim {
             m_name{"Person"},
             m_avatarUrl{""},
             m_bio{""},
-            m_profession{Teacher},
-            m_maritalStatus{Single},
+            m_profession{"Teacher"},
+            m_maritalStatus{"Single"},
             m_children{0},
             m_money{0}
         {}
         Victim(
                 const string& name, const string& avatarUrl, const string& bio,
-                const Professions& profession, const MaritalStatus& maritalStatus,
+                const string& profession, const string& maritalStatus,
                 const int& children, const int& money)
             : m_name{name}, m_avatarUrl{avatarUrl}, m_bio{bio},
             m_profession(profession), m_maritalStatus{maritalStatus},
@@ -32,10 +31,10 @@ class Victim {
         string bio(){
             return m_bio;
         }
-        Professions profession(){
+        string profession(){
             return m_profession;
         }
-        MaritalStatus maritalStatus(){
+        string maritalStatus(){
             return m_maritalStatus;
         }
         int children(){
@@ -44,12 +43,30 @@ class Victim {
         int money(){
             return m_money;
         }
+        void setName(const string name) {
+            m_name = name;
+        }
+        void setBio(const string bio) {
+            m_bio = bio;
+        }
+        void setProfession(const string profession) {
+            m_profession = profession;
+        }
+        void setMaritalStatus(const string maritalStatus) {
+            m_maritalStatus = maritalStatus;
+        }
+        void setChildren(const int children) {
+            m_children = children;
+        }
+        void setMoney(const int money) {
+            m_money = money;
+        }
     private:
         string m_name;
         string m_avatarUrl;
         string m_bio;
-        Professions m_profession;
-        MaritalStatus m_maritalStatus;
+        string m_profession;
+        string m_maritalStatus;
         int m_children;
         int m_money;
 };
