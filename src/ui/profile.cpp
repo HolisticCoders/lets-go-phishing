@@ -12,48 +12,36 @@ Rectangle GUI_Profile::avatarBounds(){
     return (Rectangle){x, y, width, width};
 }
 
-Rectangle GUI_Profile::bioBounds(){
+Vector2 GUI_Profile::bioPos(){
     const float x = m_x;
     const float y = m_y + avatarBounds().height + 10;
-    const float width = m_width;
-    const float height = m_height - avatarBounds().height - 10;
-    return (Rectangle){x, y, width, height};
+    return (Vector2){x, y};
 }
 
-Rectangle GUI_Profile::nameBounds() {
+Vector2 GUI_Profile::namePos() {
     const float x = m_x + avatarBounds().width + 10;
     const float y = m_y;
-    const float width = m_width - avatarBounds().width - 10;
-    const float height = 10;
-    return (Rectangle){x, y, width, height};
+    return (Vector2){x, y};
 }
-Rectangle GUI_Profile::professionBounds() {
+Vector2 GUI_Profile::professionPos() {
     const float x = m_x + avatarBounds().width + 10;
     const float y = m_y + 15;
-    const float width = m_width - avatarBounds().width - 10;
-    const float height = 10;
-    return (Rectangle){x, y, width, height};
+    return (Vector2){x, y};
 }
-Rectangle GUI_Profile::maritalStatusBounds(){
+Vector2 GUI_Profile::maritalStatusPos(){
     const float x = m_x + avatarBounds().width + 10;
     const float y = m_y + 30;
-    const float width = m_width - avatarBounds().width - 10;
-    const float height = 10;
-    return (Rectangle){x, y, width, height};
+    return (Vector2){x, y};
 }
-Rectangle GUI_Profile::childrenBounds(){
+Vector2 GUI_Profile::childrenPos(){
     const float x = m_x + avatarBounds().width + 10;
     const float y = m_y + 45;
-    const float width = m_width - avatarBounds().width - 10;
-    const float height = 10;
-    return (Rectangle){x, y, width, height};
+    return (Vector2){x, y};
 }
-Rectangle GUI_Profile::moneyBounds(){
+Vector2 GUI_Profile::moneyPos(){
     const float x = m_x + avatarBounds().width + 10;
     const float y = m_y + 60;
-    const float width = m_width - avatarBounds().width - 10;
-    const float height = 10;
-    return (Rectangle){x, y, width, height};
+    return (Vector2){x, y};
 }
 
 
@@ -72,24 +60,22 @@ void GUI_Profile::update(){
     ); // draw Avatar bounds
 
     char* name = (char*)m_manager.victim()->name().c_str();
-    GuiLabel(nameBounds(), name);
+    /* GuiLabel(nameBounds(), name); */
+    DrawTextEx(m_manager.font(), name, namePos(), 13, 1, m_manager.textColor());
 
     char* profession = (char*)m_manager.victim()->profession().c_str();
-    GuiLabel(professionBounds(), profession);
+    DrawTextEx(m_manager.font(), profession, professionPos(), 13, 1, m_manager.textColor());
 
     char* maritalStatus = (char*)m_manager.victim()->maritalStatus().c_str();
-    GuiLabel(maritalStatusBounds(), maritalStatus);
+    DrawTextEx(m_manager.font(), maritalStatus, maritalStatusPos(), 13, 1, m_manager.textColor());
 
     char* children = (char*)std::to_string(m_manager.victim()->children()).c_str();
-    GuiLabel(childrenBounds(), children);
+    DrawTextEx(m_manager.font(), children, childrenPos(), 13, 1, m_manager.textColor());
 
-    char* money = (char*)("$ " + std::to_string(m_manager.victim()->money())).c_str();
-    GuiLabel(moneyBounds(), money);
+    char* money = (char*)("$" + std::to_string(m_manager.victim()->money())).c_str();
+    DrawTextEx(m_manager.font(), money, moneyPos(), 13, 1, m_manager.textColor());
 
     // bio field
-    /* char* bio = (char*)m_manager.victim()->bio().c_str(); */
-    /* GuiTextBoxMulti(bioBounds(), bio, 10, false); */
-
     std::string rawContent = m_manager.victim()->bio();
 
     //convert the string to a char[] of the appropriate size
@@ -101,7 +87,8 @@ void GUI_Profile::update(){
     // generate a new char[] with \n characters
     char* wrappedContent = word_wrap(buffer, content, 77);
 
-    GuiTextBoxMulti(bioBounds(), wrappedContent, 10, false);
+    /* GuiTextBoxMulti(bioPos(), wrappedContent, 10, false); */
+    DrawTextEx(m_manager.font(), wrappedContent, bioPos(), 13, 1, m_manager.textColor());
 
     // delete temporary stuff
     delete [] content;
