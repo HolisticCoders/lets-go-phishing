@@ -12,7 +12,6 @@
 using namespace std;
 
 void GUI_Tweet::onClicked(){
-    cout << m_tweet->author()->name() << " has been clicked" << endl;
     Manager* manager = &Manager::getInstance();
     manager->setVictim(m_tweet->author());
 }
