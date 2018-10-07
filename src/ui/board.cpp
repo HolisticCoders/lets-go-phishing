@@ -11,6 +11,7 @@
 // gui includes
 #include "board.h"
 #include "button.h"
+#include "mail.h"
 #include "profile.h"
 
 
@@ -20,21 +21,26 @@ using namespace nlohmann;
 
 GUI_Board::GUI_Board() {
     // button setup
+    /* const int mailCount = m_manager.mailCount(); */
     m_buttons[0] = new GUI_Button(
         "E-Mail 01",
-        (Rectangle){ 35, 655, 93, 30 }
+        (Rectangle){ 35, 655, 93, 30 },
+        0
     );
     m_buttons[1] = new GUI_Button(
         "E-Mail 02",
-        (Rectangle){ 138, 655, 93, 30 }
+        (Rectangle){ 138, 655, 93, 30 },
+        1
     );
     m_buttons[2] = new GUI_Button(
         "E-Mail 03",
-        (Rectangle){ 241, 655, 93, 30 }
+        (Rectangle){ 241, 655, 93, 30 },
+        2
     );
     m_buttons[3] = new GUI_Button(
         "E-Mail 04",
-        (Rectangle){ 344, 655, 93, 30 }
+        (Rectangle){ 344, 655, 93, 30 },
+        3
     );
 
     // tweets setup
@@ -48,10 +54,16 @@ GUI_Board::GUI_Board() {
     }
 
     // mail setup
-    m_guiMail = new GUI_Mail(*this);
+    m_guiMail = new GUI_Mail();
 
     // profile setup
     m_guiProfile = new GUI_Profile();
+
+    // Initial draw.
+    m_manager.shuffleMails();
+    m_manager.shuffleTweets();
+    m_manager.drawMails();
+    m_manager.drawTweets();
 }
 
 
@@ -66,13 +78,6 @@ GUI_Board::~GUI_Board() {
         delete m_guiTweets[i];
     }
 }
-
-
-void GUI_Board::endTurn() {
-    drawMails();
-    drawTweets();
-}
-
 
 void GUI_Board::update() {
     if (GuiWindowBox((Rectangle){ 0, 0, 1280, 720 }, "Let's go phishing!")) {
@@ -105,32 +110,5 @@ void GUI_Board::update() {
 
     for (int i=0; i<5; i++)
         m_guiTweets[i]->update();
-
-    // Initial draw.
-    m_manager.drawMails();
-    m_manager.drawTweets();
-}
-
-
-// Draw mails and attach them to buttons
-// until we have four mails available.
-void GUI_Board::drawMails() {
-    for (GUI_Button* button: m_buttons) {
-        if (button->mail()) {
-            continue;
-        }
-        int index = GetRandomValue(0, m_manager.mailCount() - 1);
-        Mail* mail = m_manager.mails()[index];
-        button->setMail(mail);
-    }
-}
-
-
-void GUI_Board::drawTweets() {
-    for (GUI_Tweet* guiTweet: m_guiTweets) {
-        int index = GetRandomValue(0, m_manager.tweetCount() - 1);
-        Tweet* tweet = m_manager.tweets()[index];
-        guiTweet->setTweet(tweet);
-    }
 }
 

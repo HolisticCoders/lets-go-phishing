@@ -4,12 +4,10 @@
 #include "raylib.h"
 #include "../manager.h"
 
-class GUI_Board;
-
 
 class GUI_Mail{
     public:
-        GUI_Mail(GUI_Board& board) : m_board{board} {};
+        GUI_Mail() {};
         void update();
         void sendMail();
 
@@ -41,7 +39,6 @@ class GUI_Mail{
         int m_width = 405;
         int m_height = 515;
         Color m_color = LIGHTGRAY;
-        GUI_Board& m_board;
         Manager& m_manager = Manager::getInstance();
 };
 

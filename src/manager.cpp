@@ -1,5 +1,8 @@
-#include <iostream>
-#include <map>
+#include <algorithm> // shuffle
+#include <iostream> // cout
+#include <map> // map
+#include <random>       // std::default_random_engine
+#include <chrono>       // std::chrono::system_clock
 
 #include "json.hpp"
 
@@ -91,5 +94,61 @@ int Manager::tweetCount() {
 }
 int Manager::victimCount() {
     return m_resources->victims().size();
+}
+
+void Manager::endTurn() {
+    trashMail(m_mail);
+    drawTweets();
+}
+
+void Manager::trashMail(Mail* mail) {
+    auto it = find(m_mails.begin(), m_mails.end(), mail);
+    int index = distance(m_mails.begin(), it);
+    cout << "Index of mail to trash: " << index << endl;
+    deque<Mail*> tmpMails;
+
+    // Fill the front of the queue, then grab the fifth (index 4)
+    // mail and put it at the trashed mail index.
+    for (int i = 0; i < index; i++) {
+        tmpMails.push_back(m_mails[i]);
+        cout << "Adding Top: " << m_mails[i]->title() << endl;
+    }
+    tmpMails.push_back(m_mails[4]);
+    cout << "Adding Next: " << m_mails[4]->title() << endl;
+
+    // Now fill the remaining of the queue and push
+    // the trashed mail back.
+    for (int i = index + 1; i < m_mails.size(); i++) {
+        if (i == 4) {
+            i = 5;
+        }
+        tmpMails.push_back(m_mails[i]);
+        cout << "Adding Remainder: " << m_mails[i]->title() << endl;
+    }
+    tmpMails.push_back(m_mails[index]);
+    cout << "Adding Trashed: " << m_mails[index]->title() << endl;
+
+    m_mails.swap(tmpMails);
+}
+void Manager::drawMails() {}
+void Manager::drawTweets() {
+    // Create a new deque to discard the five front tweets
+    // into.
+    deque<Tweet*> tmpTweets;
+    for (int i = m_tweets.size() - 1; i >= m_tweets.size() - 5; i--) {
+        tmpTweets.push_back(m_tweets[i]);
+    }
+    for (int i = 0; i < m_tweets.size() - 5; i++) {
+        tmpTweets.push_front(m_tweets[i]);
+    }
+    m_tweets.swap(tmpTweets);
+}
+void Manager::shuffleMails() {
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    shuffle(m_mails.begin(), m_mails.end(), default_random_engine(seed));
+}
+void Manager::shuffleTweets() {
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    shuffle(m_tweets.begin(), m_tweets.end(), default_random_engine(seed));
 }
 

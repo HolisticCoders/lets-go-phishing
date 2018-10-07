@@ -30,9 +30,6 @@ class GUI_Board {
 
         // Member functions
         void update();
-        void drawMails();
-        void drawTweets();
-        void endTurn();
 
     private:
         Manager& m_manager = Manager::getInstance();

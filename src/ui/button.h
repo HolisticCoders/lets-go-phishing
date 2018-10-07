@@ -19,19 +19,20 @@ class GUI_Button {
         GUI_Button();
         GUI_Button(const string& label);
         GUI_Button(const string& label, const Rectangle& area);
+        GUI_Button(const string& label, const Rectangle& area, const int& mailIndex);
         void update();
         virtual void onClick();
         string label() {return m_label;}
         Rectangle area() {return m_area;}
-        Mail* mail() {return m_mail;}
+        int mailIndex() { return m_mailIndex; }
+        Mail* mail();
         void setPosition(const Vector2& position);
         void setSize(const Vector2& size);
         void setArea(const Rectangle& area) {m_area = area;}
-        void setMail(Mail* mail);
     private:
         string m_label;
         Rectangle m_area;
-        Mail* m_mail = nullptr;
+        int m_mailIndex;
         Manager& m_manager = Manager::getInstance();
 };
 

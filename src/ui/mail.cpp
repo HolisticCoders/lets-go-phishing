@@ -6,14 +6,13 @@
 
 #include "../utils.h"
 #include "mail.h"
-#include "board.h"
 #include "../manager.h"
 
 using namespace std;
 
 
 void GUI_Mail::sendMail(){
-    m_board.endTurn();
+    m_manager.endTurn();
 }
 
 void GUI_Mail::update() {

@@ -9,31 +9,27 @@
 using namespace std;
 
 
-GUI_Button::GUI_Button() {
-    m_label = "Button";
-    m_area = (Rectangle){ 0, 0, 100, 30};
-}
-
-GUI_Button::GUI_Button(const string& label) : m_label{label} {
-    m_area = (Rectangle){ 0, 0, 100, 30 };
-}
-
-GUI_Button::GUI_Button(const string& label, const Rectangle& area)
-    : m_label{label}, m_area{area}
+GUI_Button::GUI_Button()
+    : m_label{"Button"}, m_area{(Rectangle){ 0, 0, 100, 30}}, m_mailIndex{0}
 {}
 
+GUI_Button::GUI_Button(const string& label)
+    : m_label{label}, m_area{(Rectangle){ 0, 0, 100, 30 }}, m_mailIndex{0}
+{}
 
-void GUI_Button::update() {
-    if (GuiButton(area(), label().c_str())) {
-        onClick();
-    }
-}
+GUI_Button::GUI_Button(const string& label, const Rectangle& area)
+    : m_label{label}, m_area{area}, m_mailIndex(0)
+{}
 
-void GUI_Button::onClick() {
-    if (!m_mail) {
-        return;
+GUI_Button::GUI_Button(const string& label, const Rectangle& area, const int& mailIndex)
+    : m_label{label}, m_area{area}, m_mailIndex{mailIndex}
+{}
+
+Mail* GUI_Button::mail() {
+    if (m_mailIndex >= m_manager.mails().size()) {
+        return nullptr;
     }
-    m_manager.setMail(m_mail);
+    return m_manager.mails()[m_mailIndex];
 }
 
 void GUI_Button::setPosition(const Vector2& position) {
@@ -44,8 +40,17 @@ void GUI_Button::setSize(const Vector2& size) {
     m_area = (Rectangle){ m_area.x, m_area.y, size.x, size.y};
 }
 
-void GUI_Button::setMail(Mail* mail) {
-    // Delete the previous mail pointer.
-    m_mail = mail;
+
+void GUI_Button::update() {
+    if (GuiButton(area(), label().c_str())) {
+        onClick();
+    }
+}
+
+void GUI_Button::onClick() {
+    if (!mail()) {
+        return;
+    }
+    m_manager.setMail(mail());
 }
 
