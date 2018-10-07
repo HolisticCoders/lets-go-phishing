@@ -6,8 +6,6 @@
 #include "raylib.h"
 #include "raygui.h"
 
-#include "../player.h"
-#include "../mail.h"
 #include "../manager.h"
 
 // gui includes
@@ -20,7 +18,7 @@ using namespace std;
 using namespace nlohmann;
 
 
-GUI_Board::GUI_Board(Player* player) : m_player{player} {
+GUI_Board::GUI_Board() {
     // button setup
     m_buttons[0] = new GUI_Button(
         "E-Mail 01",
@@ -48,7 +46,6 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
     int y = 60;
     for (int i = 0; i < 5; i++) {
         m_guiTweets[i] = new GUI_Tweet();
-        m_guiTweets[i]->setTweet(m_tweets[i]);
         m_guiTweets[i]->setX(935);
         m_guiTweets[i]->setY(y);
         y += m_guiTweets[i]->height() + 10;
@@ -56,7 +53,6 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
 
     // mail setup
     m_guiMail = new GUI_Mail(this);
-    m_guiMail->setMail(m_mail);
 
     // profile setup
     m_guiProfile = new GUI_Profile();
@@ -79,6 +75,8 @@ GUI_Board::~GUI_Board() {
 
 
 void GUI_Board::endTurn() {
+    drawMails();
+    drawTweets();
 }
 
 
@@ -95,13 +93,11 @@ void GUI_Board::update() {
     GuiLabel((Rectangle){ 935, 635, 36, 25 }, "Money:");
     GuiLabel((Rectangle){ 935, 655, 71, 25 }, "Wanted level:");
 
-    GuiSliderBar((Rectangle){ 1045, 660, 185, 15 }, m_player->wantedLevel(), 0, 100);
-
-    const char* money = std::to_string(m_player->money()).c_str();
-    GuiLabel((Rectangle){ 1045, 635, 161, 25 }, money);
-
-    drawMails();
-    drawTweets();
+    if (m_manager->player()) {
+        GuiSliderBar((Rectangle){ 1045, 660, 185, 15 }, m_manager->player()->wantedLevel(), 0, 100);
+        const char* money = std::to_string(m_manager->player()->money()).c_str();
+        GuiLabel((Rectangle){ 1045, 635, 161, 25 }, money);
+    }
 
     for (GUI_Button* button: m_buttons) {
         if (!button) {
@@ -110,10 +106,8 @@ void GUI_Board::update() {
         button->update();
     }
 
-    if (m_mail)
-        m_guiMail->update();
-    if (m_guiProfile)
-        m_guiProfile->update();
+    m_guiMail->update();
+    m_guiProfile->update();
 
     for (int i=0; i<5; i++)
         m_guiTweets[i]->update();
