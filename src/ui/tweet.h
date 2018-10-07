@@ -30,14 +30,14 @@ class GUI_Tweet {
         void setTweet(Tweet* tweet){
             m_tweet = tweet;
         }
-        Rectangle getNameBounds(){
+        Rectangle nameBounds(){
             const float x = m_x + 10;
             const float y = m_y + 10;
             const float width = m_width - 20;
             const float height = 10;
             return (Rectangle){x, y, width, height};
         }
-        Rectangle getContentBounds(){
+        Rectangle contentBounds(){
             const float x = m_x + 10;
             const float y = m_y + 30;
             const float width = m_width - 20;

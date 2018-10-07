@@ -43,11 +43,20 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
         button->setBoard(*this);
     }
 
+    // TODO dynamically load victims
+    m_victim = new Victim();
+    m_victim->setName("Jean Eude");
+
     // tweets setup
     // 1st tweet y position
     int y = 60;
     for (int i = 0; i < 5; i++) {
+<<<<<<< Updated upstream
         /* m_tweets[i] = new Tweet(); */
+=======
+        m_tweets[i] = new Tweet();
+        m_tweets[i]->setAuthor(m_victim);
+>>>>>>> Stashed changes
         m_guiTweets[i] = new GUI_Tweet();
         /* m_guiTweets[i]->setTweet(m_tweets[i]); */
         m_guiTweets[i]->setX(935);
@@ -63,7 +72,6 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
     m_guiMail->setMail(m_mail);
 
     // profile setup
-    m_victim = new Victim();
     m_guiProfile = new GUI_Profile();
     m_guiProfile->setVictim(m_victim);
 }

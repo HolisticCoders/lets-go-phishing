@@ -3,7 +3,10 @@
 
 void GUI_Tweet::update(){
     DrawRectangle(m_x, m_y, m_width, m_height, m_color);
-    GuiLabel(getNameBounds(), "@JongJong");
+    if (m_tweet->author()) {
+        char* name = (char*)m_tweet->author()->name().c_str();
+        GuiLabel(nameBounds(), name);
+    }
     char* text = (char*)m_tweet->content().c_str();
-    GuiTextBoxMulti(getContentBounds(), text, 10, false);
+    GuiTextBoxMulti(contentBounds(), text, 10, false);
 }
