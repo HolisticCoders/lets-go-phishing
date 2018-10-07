@@ -7,6 +7,7 @@
 #include "raygui.h"
 
 #include "../manager.h"
+#include "../results.h"
 
 //ui includes
 #include "tweet.h"
@@ -30,6 +31,7 @@ class GUI_Board {
 
         // Member functions
         void update();
+        void showResults(Results& results);
 
     private:
         Manager& m_manager = Manager::getInstance();

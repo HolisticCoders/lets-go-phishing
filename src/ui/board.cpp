@@ -7,6 +7,7 @@
 #include "raygui.h"
 
 #include "../manager.h"
+#include "../results.h"
 
 // gui includes
 #include "board.h"
@@ -110,5 +111,10 @@ void GUI_Board::update() {
 
     for (int i=0; i<5; i++)
         m_guiTweets[i]->update();
+}
+
+void GUI_Board::showResults(Results& results) {
+    cout << "Reward: " << results.money << endl;
+    cout << "Wanted Level: " << results.wantedLevel << endl;
 }
 

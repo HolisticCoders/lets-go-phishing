@@ -9,8 +9,10 @@
 #include "mail.h"
 #include "manager.h"
 #include "resources.h"
+#include "results.h"
 #include "tweet.h"
 #include "victim.h"
+#include "ui/board.h"
 
 using namespace std;
 using namespace nlohmann;
@@ -105,6 +107,10 @@ int Manager::victimCount() {
 void Manager::endTurn() {
     trashMail(m_mail);
     drawTweets();
+    Results results = spamResults(m_mail, m_victim);
+    m_player->addMoney(results.money);
+    m_player->addWantedLevel(results.wantedLevel);
+    m_board->showResults(results);
 }
 
 void Manager::trashMail(Mail* mail) {
@@ -151,5 +157,9 @@ void Manager::shuffleMails() {
 void Manager::shuffleTweets() {
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();
     shuffle(m_tweets.begin(), m_tweets.end(), default_random_engine(seed));
+}
+
+Results Manager::spamResults(Mail *mail, Victim *victim) {
+    return (Results){mail->reward(), mail->risk()};
 }
 

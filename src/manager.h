@@ -7,12 +7,16 @@
 #include "raylib.h"
 
 #include "mail.h"
+#include "player.h"
 #include "resources.h"
+#include "results.h"
 #include "tweet.h"
 #include "victim.h"
-#include "player.h"
 
 using namespace std;
+
+
+class GUI_Board;
 
 
 class Manager {
@@ -57,16 +61,19 @@ class Manager {
         Player* player() { return m_player; }
         Victim* victim() {return m_victim;}
         Mail* mail() { return m_mail; }
+        GUI_Board* board() { return m_board; }
 
         void setPlayer(Player* player) { m_player = player; }
         void setVictim(Victim* victim) {m_victim = victim;}
         void setMail(Mail* mail) { m_mail = mail; }
+        void setBoard(GUI_Board* board) { m_board = board; }
 
         void drawMails();
         void drawTweets();
         void shuffleMails();
         void shuffleTweets();
         void trashMail(Mail* mail);
+        Results spamResults(Mail* mail, Victim* victim);
         void endTurn();
 
     private:
@@ -92,6 +99,7 @@ class Manager {
         Color m_lineColor = (Color){144,171,181,255};
         Color m_textColor = (Color){63,63,63,255};
         Color m_focusColor = (Color){201,239,254,255};
+        GUI_Board* m_board = nullptr;
 
 };
 

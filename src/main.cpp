@@ -25,8 +25,9 @@ int main() {
 
     Manager* manager = &Manager::getInstance();
     Player player;
-    manager->setPlayer(&player);
     GUI_Board board;
+    manager->setPlayer(&player);
+    manager->setBoard(&board);
 
     while (true) {
 
