@@ -2,7 +2,8 @@
 #define GUITWEET_H
 
 #include "raylib.h"
-#include "../tweet.cpp"
+#include "../tweet.h"
+#include "../manager.h"
 
 class GUI_Tweet {
     public:
@@ -10,6 +11,7 @@ class GUI_Tweet {
         void update();
         void onClicked();
         bool isClicked();
+        bool isHovered();
 
         int height() {
             return m_height;
@@ -54,6 +56,7 @@ class GUI_Tweet {
         int m_height = (550 - 10 * (5 + 1))/5; 
         Color m_color = LIGHTGRAY;
         Tweet* m_tweet = nullptr;
+        Manager& m_manager = Manager::getInstance();
 };
 
 #endif
