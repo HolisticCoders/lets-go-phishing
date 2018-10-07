@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "raygui.h"
 #include "profile.h"
+#include "../utils.h"
 
 #include <string>
 
@@ -86,6 +87,23 @@ void GUI_Profile::update(){
     GuiLabel(moneyBounds(), money);
 
     // bio field
-    char* bio = (char*)m_manager.victim()->bio().c_str();
-    GuiTextBoxMulti(bioBounds(), bio, 10, false);
+    /* char* bio = (char*)m_manager.victim()->bio().c_str(); */
+    /* GuiTextBoxMulti(bioBounds(), bio, 10, false); */
+
+    std::string rawContent = m_manager.victim()->bio();
+
+    //convert the string to a char[] of the appropriate size
+    char* content = new char[rawContent.length() + 1]; 
+    strcpy(content, rawContent.c_str());
+
+    // create a buffer with room for the new line characters
+    char* buffer = new char[rawContent.length() + 10];
+    // generate a new char[] with \n characters
+    char* wrappedContent = word_wrap(buffer, content, 77);
+
+    GuiTextBoxMulti(bioBounds(), wrappedContent, 10, false);
+
+    // delete temporary stuff
+    delete [] content;
+    delete [] buffer;
 }

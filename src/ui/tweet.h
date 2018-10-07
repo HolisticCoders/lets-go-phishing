@@ -8,6 +8,8 @@ class GUI_Tweet {
     public:
         GUI_Tweet(){};
         void update();
+        void onClicked();
+        bool isClicked();
 
         int height() {
             return m_height;
