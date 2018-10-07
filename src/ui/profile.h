@@ -11,12 +11,12 @@ class GUI_Profile {
         void update();
 
         Rectangle avatarBounds();
-        Rectangle nameBounds();
-        Rectangle professionBounds();
-        Rectangle maritalStatusBounds();
-        Rectangle childrenBounds();
-        Rectangle moneyBounds();
-        Rectangle bioBounds();
+        Vector2 namePos();
+        Vector2 professionPos();
+        Vector2 maritalStatusPos();
+        Vector2 childrenPos();
+        Vector2 moneyPos();
+        Vector2 bioPos();
     private:
         int m_x = 485;
         int m_y = 60;
