@@ -7,6 +7,7 @@
 #include "resources.h"
 #include "tweet.h"
 #include "victim.h"
+#include "player.h"
 
 using namespace std;
 
@@ -46,8 +47,13 @@ class Manager {
         int tweetCount();
         int victimCount();
 
-        void setVictim(Victim* victim) {m_victim = victim;}
+        Player* player() { return m_player; }
         Victim* victim() {return m_victim;}
+        Mail* mail() { return m_mail; }
+
+        void setPlayer(Player* player) { m_player = player; }
+        void setVictim(Victim* victim) {m_victim = victim;}
+        void setMail(Mail* mail) { m_mail = mail; }
 
     private:
         Manager();
@@ -63,7 +69,9 @@ class Manager {
         Victim* m_victims = nullptr;
 
         // pointers to represent the current state of the board
+        Player* m_player = nullptr;
         Victim* m_victim = nullptr;
+        Mail* m_mail = nullptr;
 };
 
 
