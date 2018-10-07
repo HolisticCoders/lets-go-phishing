@@ -1,5 +1,11 @@
 [
     {
-        "name": "jane.doe"
+        "name": "jane.doe",
+        "avatarUrl": "jane.doe@gravatar.com",
+        "bio": "Hey there! Just your regular girl next door.",
+        "profession": "Teacher",
+        "maritalStatus": "single",
+        "children": 1,
+        "money": 500
     }
 ]

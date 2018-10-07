@@ -58,6 +58,10 @@ Rectangle GUI_Profile::moneyBounds(){
 
 void GUI_Profile::update(){
     /* DrawRectangle(m_x, m_y, m_width, m_height, LIGHTGRAY); // draw bounds */
+    if (!m_victim) {
+        return;
+    }
+
     DrawRectangle(
         avatarBounds().x,
         avatarBounds().y,
@@ -69,12 +73,10 @@ void GUI_Profile::update(){
     char* name = (char*)m_victim->name().c_str();
     GuiLabel(nameBounds(), name);
 
-    /* char* profession = (char*)m_victim->profession().c_str(); */
-    char* profession = (char*)"Cook";
+    char* profession = (char*)m_victim->profession().c_str();
     GuiLabel(professionBounds(), profession);
 
-    /* char* maritalStatus = (char*)m_victim->maritalStatus().c_str(); */
-    char* maritalStatus = (char*)"Married";
+    char* maritalStatus = (char*)m_victim->maritalStatus().c_str();
     GuiLabel(maritalStatusBounds(), maritalStatus);
 
     char* children = (char*)std::to_string(m_victim->children()).c_str();

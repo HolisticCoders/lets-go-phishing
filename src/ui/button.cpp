@@ -22,11 +22,6 @@ GUI_Button::GUI_Button(const string& label, const Rectangle& area)
     : m_label{label}, m_area{area}
 {}
 
-GUI_Button::~GUI_Button() {
-    if (m_mail) {
-        delete m_mail;
-    }
-}
 
 void GUI_Button::update() {
     if (GuiButton(area(), label().c_str())) {
@@ -57,9 +52,6 @@ void GUI_Button::setSize(const Vector2& size) {
 
 void GUI_Button::setMail(Mail* mail) {
     // Delete the previous mail pointer.
-    if (m_mail) {
-        delete m_mail;
-    }
     m_mail = mail;
 }
 

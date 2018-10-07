@@ -19,7 +19,6 @@ class GUI_Button {
         GUI_Button();
         GUI_Button(const string& label);
         GUI_Button(const string& label, const Rectangle& area);
-        ~GUI_Button();
         void update();
         virtual void onClick();
         string label() {return m_label;}

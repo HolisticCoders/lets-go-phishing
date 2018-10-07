@@ -7,6 +7,7 @@
 #include "raygui.h"
 
 #include "../mail.h"
+#include "../manager.h"
 #include "../player.h"
 #include "../resources.h"
 #include "../tweet.h"
@@ -27,7 +28,6 @@ class GUI_Board {
         ~GUI_Board();
 
         // Accessors.
-        Resources* resources() { return m_resources; }
         Player* player() {return m_player;}
         Victim* victim() {return m_victim;}
         Mail* mail() {return m_mail;}
@@ -52,8 +52,8 @@ class GUI_Board {
         void endTurn();
 
     private:
-        Resources* m_resources;
         Player* m_player;
+        Manager* m_manager = nullptr;
         Victim* m_victim = nullptr;
         Mail* m_mail = nullptr;
         Tweet* m_tweets[5];
@@ -62,7 +62,6 @@ class GUI_Board {
         GUI_Tweet* m_guiTweets[5];
         GUI_Mail* m_guiMail;
         GUI_Profile* m_guiProfile;
-        void loadData();
 };
 
 #endif
