@@ -47,7 +47,7 @@ GUI_Board::GUI_Board() {
     // 1st tweet y position
     int y = 60;
     for (int i = 0; i < 5; i++) {
-        m_guiTweets[i] = new GUI_Tweet();
+        m_guiTweets[i] = new GUI_Tweet(i);
         m_guiTweets[i]->setX(935);
         m_guiTweets[i]->setY(y);
         y += m_guiTweets[i]->height() + 10;

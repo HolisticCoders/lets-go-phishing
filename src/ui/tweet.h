@@ -7,33 +7,20 @@
 
 class GUI_Tweet {
     public:
-        GUI_Tweet(){};
+        GUI_Tweet(const int& index) : m_index{index} {};
         void update();
         void onClicked();
         bool isClicked();
         bool isHovered();
 
-        int height() {
-            return m_height;
-        }
-        Tweet* tweet() {
-            return m_tweet;
-        }
-        void setX(int x){
-            m_x = x;
-        }
-        void setY(int y){
-            m_y = y;
-        }
-        void setWidth(int width){
-            m_width = width;
-        }
-        void setHeight(int height){
-            m_height = height;
-        }
-        void setTweet(Tweet* tweet){
-            m_tweet = tweet;
-        }
+        int height() { return m_height; }
+        Tweet* tweet() { return m_manager.tweets()[m_index]; }
+
+        void setX(int x){ m_x = x; }
+        void setY(int y){ m_y = y; }
+        void setWidth(int width){ m_width = width; }
+        void setHeight(int height){ m_height = height; }
+
         Rectangle nameBounds(){
             const float x = m_x + 10;
             const float y = m_y + 10;
@@ -55,7 +42,7 @@ class GUI_Tweet {
         int m_width = 310;
         int m_height = (550 - 10 * (5 + 1))/5; 
         Color m_color = LIGHTGRAY;
-        Tweet* m_tweet = nullptr;
+        int m_index;
         Manager& m_manager = Manager::getInstance();
 };
 

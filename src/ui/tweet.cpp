@@ -13,7 +13,7 @@ using namespace std;
 
 void GUI_Tweet::onClicked(){
     Manager* manager = &m_manager;
-    manager->setVictim(m_tweet->author());
+    manager->setVictim(tweet()->author());
 }
 
 bool GUI_Tweet::isClicked(){
@@ -52,17 +52,17 @@ void GUI_Tweet::update(){
     if (isHovered())
         DrawRectangle(m_x, m_y, m_width, m_height, m_manager.focusColor());
     DrawRectangleLines(m_x, m_y, m_width, m_height, m_manager.lineColor());
-    if (!m_tweet) {
+    if (!tweet()) {
         return;
     }
-    if (m_tweet->author()) {
-        char* name = (char*)("@"+m_tweet->author()->name()).c_str();
+    if (tweet()->author()) {
+        char* name = (char*)("@"+tweet()->author()->name()).c_str();
         Vector2 namePos {nameBounds().x, nameBounds().y};
         DrawTextEx(m_manager.font(), name, namePos, 13, 1, m_manager.textColor());
         /* DrawTextEx(m_manager.font(), title, titlePos, 13, 1, m_manager.textColor()); */
     }
 
-    std::string rawContent = m_tweet->content();
+    std::string rawContent = tweet()->content();
 
     //convert the string to a char[] of the appropriate size
     char* content = new char[rawContent.length() + 1]; 
