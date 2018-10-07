@@ -38,7 +38,13 @@ Manager::Manager() {
     }
     for (int i = 0; i < m_resources->mails().size(); i++) {
         json data = m_resources->mails()[i];
-        Mail* mail = new Mail(data["title"], data["content"], data["category"]);
+        Mail* mail = new Mail(
+            data["title"],
+            data["content"],
+            data["category"],
+            data["risk"],
+            data["reward"]
+        );
         m_mails.push_back(mail);
     }
     for (int i = 0; i < m_resources->victims().size(); i++) {
