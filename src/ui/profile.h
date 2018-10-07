@@ -3,16 +3,12 @@
 
 #include "raylib.h"
 #include "../victim.h"
+#include "../manager.h"
 
 class GUI_Profile {
     public:
         GUI_Profile(){};
         void update();
-
-        Victim* victim() { return m_victim; }
-        void setVictim(Victim* victim) {
-            m_victim = victim;
-        }
 
         Rectangle avatarBounds();
         Rectangle nameBounds();
@@ -26,7 +22,8 @@ class GUI_Profile {
         int m_y = 60;
         int m_width = 405;
         int m_height = 625;
-        Victim* m_victim = nullptr;
+        Manager& m_manager = Manager::getInstance();
+
 };
 
 #endif

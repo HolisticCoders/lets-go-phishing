@@ -43,6 +43,10 @@ class Manager {
         int professionsCount();
         int tweetCount();
         int victimCount();
+
+        void setVictim(Victim* victim) {m_victim = victim;}
+        Victim* victim() {return m_victim;}
+
     private:
         Manager();
         ~Manager();
@@ -56,6 +60,9 @@ class Manager {
         string* m_professions = nullptr;
         Tweet* m_tweets = nullptr;
         Victim* m_victims = nullptr;
+
+        // pointers to represent the current state of the board
+        Victim* m_victim = nullptr;
 };
 
 

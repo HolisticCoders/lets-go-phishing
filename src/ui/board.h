@@ -29,7 +29,6 @@ class GUI_Board {
 
         // Accessors.
         Player* player() {return m_player;}
-        Victim* victim() {return m_victim;}
         Mail* mail() {return m_mail;}
         bool closing() {return m_closing;}
 
@@ -38,10 +37,6 @@ class GUI_Board {
         void setMail(Mail* mail) {
             m_mail = mail;
             m_guiMail->setMail(mail);
-        }
-        void setVictim(Victim* victim) {
-            m_victim = victim;
-            m_guiProfile->setVictim(victim);
         }
         void setClosing(const bool& closing) {m_closing = closing;}
 
@@ -54,7 +49,6 @@ class GUI_Board {
     private:
         Player* m_player;
         Manager* m_manager = nullptr;
-        Victim* m_victim = nullptr;
         Mail* m_mail = nullptr;
         Tweet* m_tweets[5];
         bool m_closing = false;

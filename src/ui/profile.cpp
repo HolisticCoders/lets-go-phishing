@@ -58,7 +58,7 @@ Rectangle GUI_Profile::moneyBounds(){
 
 void GUI_Profile::update(){
     /* DrawRectangle(m_x, m_y, m_width, m_height, LIGHTGRAY); // draw bounds */
-    if (!m_victim) {
+    if (!m_manager.victim()) {
         return;
     }
 
@@ -70,23 +70,22 @@ void GUI_Profile::update(){
         GRAY
     ); // draw Avatar bounds
 
-    char* name = (char*)m_victim->name().c_str();
+    char* name = (char*)m_manager.victim()->name().c_str();
     GuiLabel(nameBounds(), name);
 
-    char* profession = (char*)m_victim->profession().c_str();
+    char* profession = (char*)m_manager.victim()->profession().c_str();
     GuiLabel(professionBounds(), profession);
 
-    char* maritalStatus = (char*)m_victim->maritalStatus().c_str();
+    char* maritalStatus = (char*)m_manager.victim()->maritalStatus().c_str();
     GuiLabel(maritalStatusBounds(), maritalStatus);
 
-    char* children = (char*)std::to_string(m_victim->children()).c_str();
+    char* children = (char*)std::to_string(m_manager.victim()->children()).c_str();
     GuiLabel(childrenBounds(), children);
 
-    /* char *intStr = itoa(a); */
-    char* money = (char*)("$ " + std::to_string(m_victim->money())).c_str();
+    char* money = (char*)("$ " + std::to_string(m_manager.victim()->money())).c_str();
     GuiLabel(moneyBounds(), money);
 
     // bio field
-    char* bio = (char*)m_victim->bio().c_str();
+    char* bio = (char*)m_manager.victim()->bio().c_str();
     GuiTextBoxMulti(bioBounds(), bio, 10, false);
 }
