@@ -107,8 +107,8 @@ void GUI_Board::update() {
         m_guiTweets[i]->update();
 
     // Initial draw.
-    drawMails();
-    drawTweets();
+    m_manager.drawMails();
+    m_manager.drawTweets();
 }
 
 
@@ -120,7 +120,7 @@ void GUI_Board::drawMails() {
             continue;
         }
         int index = GetRandomValue(0, m_manager.mailCount() - 1);
-        Mail* mail = &m_manager.mails()[index];
+        Mail* mail = m_manager.mails()[index];
         button->setMail(mail);
     }
 }
@@ -129,7 +129,7 @@ void GUI_Board::drawMails() {
 void GUI_Board::drawTweets() {
     for (GUI_Tweet* guiTweet: m_guiTweets) {
         int index = GetRandomValue(0, m_manager.tweetCount() - 1);
-        Tweet* tweet = &m_manager.tweets()[index];
+        Tweet* tweet = m_manager.tweets()[index];
         guiTweet->setTweet(tweet);
     }
 }

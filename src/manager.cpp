@@ -16,10 +16,8 @@ using namespace nlohmann;
 Manager::Manager() {
     m_resources = new Resources("../resources/");
     m_categories = new string[m_resources->categories().size()];
-    m_mails = new Mail[m_resources->mails().size()];
     m_maritalStatus = new string[m_resources->maritalStatus().size()];
     m_professions = new string[m_resources->professions().size()];
-    m_tweets = new Tweet[m_resources->tweets().size()];
     m_victims = new Victim[m_resources->victims().size()];
 
     // Get track of the victims name to associate them
@@ -37,9 +35,8 @@ Manager::Manager() {
     }
     for (int i = 0; i < m_resources->mails().size(); i++) {
         json data = m_resources->mails()[i];
-        m_mails[i].setTitle(data["title"]);
-        m_mails[i].setContent(data["content"]);
-        m_mails[i].setCategory(data["category"]);
+        Mail* mail = new Mail(data["title"], data["content"], data["category"]);
+        m_mails.push_back(mail);
     }
     for (int i = 0; i < m_resources->victims().size(); i++) {
         json data = m_resources->victims()[i];
@@ -53,19 +50,27 @@ Manager::Manager() {
     }
     for (int i = 0; i < m_resources->tweets().size(); i++) {
         json data = m_resources->tweets()[i];
-        m_tweets[i].setAuthor(victimNames[data["author"]]);
-        m_tweets[i].setContent(data["content"]);
+        Tweet* tweet = new Tweet(
+            victimNames[data["author"]],
+            data["content"]
+        );
+        m_tweets.push_back(tweet);
     }
 }
 
 Manager::~Manager() {
     delete m_resources;
     delete [] m_categories;
-    delete [] m_mails;
     delete [] m_maritalStatus;
     delete [] m_professions;
-    delete [] m_tweets;
     delete [] m_victims;
+
+    for (Mail* mail: m_mails) {
+        delete mail;
+    }
+    for (Tweet* tweet: m_tweets) {
+        delete tweet;
+    }
 }
 
 
@@ -87,3 +92,4 @@ int Manager::tweetCount() {
 int Manager::victimCount() {
     return m_resources->victims().size();
 }
+

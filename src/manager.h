@@ -1,7 +1,9 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 
-#include <string>
+#include <deque> // deque
+#include <string> // string
+
 #include "raylib.h"
 
 #include "mail.h"
@@ -35,10 +37,10 @@ class Manager {
 
         Resources* resources() { return m_resources; }
         string* categories() { return m_categories; }
-        Mail* mails() { return m_mails; }
+        deque<Mail*> mails() { return m_mails; }
         string* maritalStatus() { return m_maritalStatus; }
         string* professions() { return m_professions; }
-        Tweet* tweets() { return m_tweets; }
+        deque<Tweet*> tweets() { return m_tweets; }
         Victim* victims() { return m_victims; }
         Font font() { return m_font; }
 
@@ -57,6 +59,13 @@ class Manager {
         void setVictim(Victim* victim) {m_victim = victim;}
         void setMail(Mail* mail) { m_mail = mail; }
 
+        void drawMails();
+        void drawTweets();
+        void shuffleMails();
+        void shuffleTweets();
+        void trashMail(Mail* mail);
+        void endTurn();
+
     private:
         Manager();
 
@@ -64,10 +73,10 @@ class Manager {
         // All these pointers will be loaded at startup,
         // with an array of elements.
         string* m_categories = nullptr;
-        Mail* m_mails = nullptr;
+        deque<Mail*> m_mails;
         string* m_maritalStatus = nullptr;
         string* m_professions = nullptr;
-        Tweet* m_tweets = nullptr;
+        deque<Tweet*> m_tweets;
         Victim* m_victims = nullptr;
 
         // pointers to represent the current state of the board
