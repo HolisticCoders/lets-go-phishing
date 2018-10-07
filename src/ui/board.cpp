@@ -54,7 +54,7 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
         m_tweets[i] = new Tweet();
         m_tweets[i]->setAuthor(m_victim);
         m_guiTweets[i] = new GUI_Tweet();
-        /* m_guiTweets[i]->setTweet(m_tweets[i]); */
+        m_guiTweets[i]->setTweet(m_tweets[i]);
         m_guiTweets[i]->setX(935);
         m_guiTweets[i]->setY(y);
         y += m_guiTweets[i]->height() + 10;
