@@ -1,6 +1,7 @@
 #ifndef GUIPROFILE_H
 #define GUIPROFILE_H
 
+#include "raylib.h"
 #include "../victim.h"
 
 class GUI_Profile {
@@ -12,13 +13,13 @@ class GUI_Profile {
             m_victim = victim;
         }
 
-        void avatarBounds();
-        void nameBounds();
-        void professionBounds();
-        void maritalStatusBounds();
-        void childrenBounds();
-        void moneyBounds();
-        void bioBounds();
+        Rectangle avatarBounds();
+        Rectangle nameBounds();
+        Rectangle professionBounds();
+        Rectangle maritalStatusBounds();
+        Rectangle childrenBounds();
+        Rectangle moneyBounds();
+        Rectangle bioBounds();
     private:
         int m_x = 485;
         int m_y = 60;

@@ -26,6 +26,24 @@ class Victim {
             m_profession(profession), m_maritalStatus{maritalStatus},
             m_children{children}, m_money{money}
         {}
+        string name(){
+            return m_name;
+        }
+        string bio(){
+            return m_bio;
+        }
+        Professions profession(){
+            return m_profession;
+        }
+        MaritalStatus maritalStatus(){
+            return m_maritalStatus;
+        }
+        int children(){
+            return m_children;
+        }
+        int money(){
+            return m_money;
+        }
     private:
         string m_name;
         string m_avatarUrl;
