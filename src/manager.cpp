@@ -27,26 +27,21 @@ Manager::Manager() {
     map<string, Victim*> victimNames;
 
     for (int i = 0; i < m_resources->professions().size(); i++) {
-        cout << "Creating Profession " << m_resources->professions()[i] << endl;
         m_professions[i] = m_resources->professions()[i];
     }
     for (int i = 0; i < m_resources->maritalStatus().size(); i++) {
-        cout << "Creating MaritalStatus " << m_resources->maritalStatus()[i] << endl;
         m_maritalStatus[i] = m_resources->maritalStatus()[i];
     }
     for (int i = 0; i < m_resources->categories().size(); i++) {
-        cout << "Creating Category " << m_resources->categories()[i] << endl;
         m_categories[i] = m_resources->categories()[i];
     }
     for (int i = 0; i < m_resources->mails().size(); i++) {
-        cout << "Creating Mail " << m_resources->mails()[i] << endl;
         json data = m_resources->mails()[i];
         m_mails[i].setTitle(data["title"]);
         m_mails[i].setContent(data["content"]);
         m_mails[i].setCategory(data["category"]);
     }
     for (int i = 0; i < m_resources->victims().size(); i++) {
-        cout << "Creating Victim " << m_resources->victims()[i] << endl;
         json data = m_resources->victims()[i];
         m_victims[i].setName(data["name"]);
         m_victims[i].setBio(data["bio"]);
@@ -57,7 +52,6 @@ Manager::Manager() {
         victimNames[data["name"]] = &m_victims[i];
     }
     for (int i = 0; i < m_resources->tweets().size(); i++) {
-        cout << "Creating Tweet " << m_resources->tweets()[i] << endl;
         json data = m_resources->tweets()[i];
         m_tweets[i].setAuthor(victimNames[data["author"]]);
         m_tweets[i].setContent(data["content"]);

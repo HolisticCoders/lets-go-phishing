@@ -73,7 +73,6 @@ GUI_Board::~GUI_Board() {
         }
     }
     for (int i = 0; i < 5; i++) {
-        delete m_tweets[i];
         delete m_guiTweets[i];
     }
 }

@@ -1,6 +1,8 @@
+#include <iostream>
 #include "raylib.h"
 
 #include "mail.h"
+#include "manager.h"
 #include "victim.h"
 
 #include "ui/board.h"
@@ -8,6 +10,8 @@
 // Keep this one AFTER all others to avoid redefinitions.
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
+
+using namespace std;
 
 
 int main() {
@@ -19,6 +23,7 @@ int main() {
 
     SetTargetFPS(30);
 
+    Manager* manager = &Manager::getInstance();
     Player player;
     GUI_Board board(&player);
 
