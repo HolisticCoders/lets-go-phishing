@@ -64,6 +64,8 @@ void GUI_Mail::update() {
     DrawTextEx(m_manager.font(), wrappedContent, textPos, 13, 1, m_manager.textColor());
 
     //draw Send button
-    if(GuiButton( buttonBounds(), "SEND"))
-        sendMail();
+    if (m_manager.victim()) {
+        if(GuiButton( buttonBounds(), "SEND"))
+            sendMail();
+    }
 }
