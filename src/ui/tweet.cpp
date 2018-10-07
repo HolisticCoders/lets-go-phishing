@@ -59,7 +59,6 @@ void GUI_Tweet::update(){
         char* name = (char*)("@"+tweet()->author()->name()).c_str();
         Vector2 namePos {nameBounds().x, nameBounds().y};
         DrawTextEx(m_manager.font(), name, namePos, 13, 1, m_manager.textColor());
-        /* DrawTextEx(m_manager.font(), title, titlePos, 13, 1, m_manager.textColor()); */
     }
 
     std::string rawContent = tweet()->content();
@@ -75,7 +74,6 @@ void GUI_Tweet::update(){
 
     Vector2 contentPos {contentBounds().x, contentBounds().y};
     DrawTextEx(m_manager.font(), wrappedContent, contentPos, 13, 1, m_manager.textColor());
-    /* GuiTextBoxMulti(contentBounds(), wrappedContent, 10, false); */
 
     // delete temporary stuff
     delete [] content;
