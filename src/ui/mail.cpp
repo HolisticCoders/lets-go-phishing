@@ -28,6 +28,26 @@ void GUI_Mail::update() {
     Vector2 titlePos {titleBounds().x, titleBounds().y + 10};
     DrawTextEx(m_manager.font(), title, titlePos, 13, 1, m_manager.textColor());
 
+    // draw risk and reward.
+    string rawReward = "Reward: $" + to_string(m_manager.mail()->reward());
+    char* reward = new char[rawReward.length() + 1]; 
+    strcpy(reward, rawReward.c_str());
+    Vector2 rewardPos {rewardBounds().x, rewardBounds().y + 10};
+    DrawTextEx(m_manager.font(), reward, rewardPos, 13, 1, m_manager.textColor());
+
+    string rawRisk;
+    if (m_manager.mail()->risk() < 5) {
+        rawRisk = "Risk: Low";
+    } else if (m_manager.mail()->risk() < 10) {
+        rawRisk = "Risk: Medium";
+    } else {
+        rawRisk = "Risk: High";
+    }
+    char* risk = new char[rawRisk.length() + 1]; 
+    strcpy(risk, rawRisk.c_str());
+    Vector2 riskPos {riskBounds().x, riskBounds().y + 10};
+    DrawTextEx(m_manager.font(), risk, riskPos, 13, 1, m_manager.textColor());
+
     // draw content
     string rawContent = m_manager.mail()->content();
 

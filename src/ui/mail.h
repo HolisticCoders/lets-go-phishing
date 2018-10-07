@@ -18,11 +18,25 @@ class GUI_Mail{
             const float height = 25;
             return (Rectangle){x, y, width, height};
         }
+        Rectangle rewardBounds() {
+            const float x = m_x;
+            const float y = m_y + 30;
+            const float width = (m_width - 10) / 2;
+            const float height = 25;
+            return (Rectangle){x, y, width, height};
+        }
+        Rectangle riskBounds() {
+            const float x = m_width / 2 + 10;
+            const float y = m_y + 30;
+            const float width = (m_width - 10) / 2;
+            const float height = 25;
+            return (Rectangle){x, y, width, height};
+        }
         Rectangle contentBounds(){
             const float x = m_x;
-            const float y = m_y + 35;
+            const float y = m_y + 65;
             const float width = m_width;
-            const float height = m_height;
+            const float height = m_height - 30;
             return (Rectangle){x, y, width, height};
         }
         Rectangle buttonBounds(){
