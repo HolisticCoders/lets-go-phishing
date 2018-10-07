@@ -8,7 +8,6 @@
 
 
 void GUI_Mail::sendMail(){
-    std::cout << "Sending Mail" << std::endl;
     m_board->endTurn();
 }
 

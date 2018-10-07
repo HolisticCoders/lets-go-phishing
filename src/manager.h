@@ -29,6 +29,8 @@ class Manager {
             return instance;
         }
 
+        ~Manager();
+
         Resources* resources() { return m_resources; }
         string* categories() { return m_categories; }
         Mail* mails() { return m_mails; }
@@ -45,7 +47,6 @@ class Manager {
         int victimCount();
     private:
         Manager();
-        ~Manager();
 
         Resources* m_resources = nullptr;
         // All these pointers will be loaded at startup,

@@ -76,16 +76,12 @@ GUI_Board::~GUI_Board() {
         }
     }
     for (int i = 0; i < 5; i++) {
-        delete m_tweets[i];
         delete m_guiTweets[i];
     }
 }
 
 
 void GUI_Board::endTurn() {
-    Victim* victim = m_guiProfile->victim();
-    Mail* mail = m_guiMail->mail();
-    cout << "Sending mail " << mail->title() << " to " << victim->name() << endl;
 }
 
 
@@ -110,8 +106,6 @@ void GUI_Board::update() {
     drawMails();
     drawTweets();
 
-    cout << "A new turn begins..." << endl;
-
     for (GUI_Button* button: m_buttons) {
         if (!button) {
             continue;
@@ -119,18 +113,13 @@ void GUI_Board::update() {
         button->update();
     }
 
-    cout << "Updated buttons." << endl;
-
     if (m_mail)
         m_guiMail->update();
-    cout << "Updated Send mail tab." << endl;
     if (m_guiProfile)
         m_guiProfile->update();
-    cout << "Updated victim profile." << endl;
 
     for (int i=0; i<5; i++)
         m_guiTweets[i]->update();
-    cout << "Updated Twatter." << endl;
 
 }
 
@@ -142,8 +131,6 @@ void GUI_Board::drawMails() {
         if (button->mail()) {
             continue;
         }
-        cout << "Drawing mail for button " << button->label() << endl;
-        cout << "E-Mail count: " << m_manager->mailCount() << endl;
         int index = GetRandomValue(0, m_manager->mailCount() - 1);
         Mail* mail = &m_manager->mails()[index];
         button->setMail(mail);
@@ -153,7 +140,6 @@ void GUI_Board::drawMails() {
 
 void GUI_Board::drawTweets() {
     for (GUI_Tweet* guiTweet: m_guiTweets) {
-        cout << "Drawing content for tweet." << endl;
         int index = GetRandomValue(0, m_manager->tweetCount() - 1);
         Tweet* tweet = &m_manager->tweets()[index];
         guiTweet->setTweet(tweet);

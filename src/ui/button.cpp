@@ -31,14 +31,11 @@ void GUI_Button::update() {
 
 void GUI_Button::onClick() {
     if (!m_board) {
-        cout << "No board to set attached e-mail to." << endl;
         return;
     }
     if (!m_mail) {
-        cout << "No attached e-mail to set on board." << endl;
         return;
     }
-    cout << "Displaying E-Mail " << endl;
     m_board->setMail(m_mail);
 }
 

@@ -24,7 +24,6 @@ Resources::Resources(const string root) : m_root{root} {
 void Resources::getResource(const char* path, json* data) {
     string fullPath = m_root;
     fullPath.append(path);
-    cout << "Resource path: " << fullPath << endl;
     ifstream input(fullPath);
     if (!input.good()) {
         input.close();
