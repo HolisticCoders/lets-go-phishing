@@ -12,6 +12,9 @@ class GUI_Tweet {
         int height() {
             return m_height;
         }
+        Tweet* tweet() {
+            return m_tweet;
+        }
         void setX(int x){
             m_x = x;
         }
