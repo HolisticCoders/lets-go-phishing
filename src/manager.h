@@ -2,6 +2,7 @@
 #define MANAGER_H
 
 #include <string>
+#include "raylib.h"
 
 #include "mail.h"
 #include "resources.h"
@@ -39,6 +40,7 @@ class Manager {
         string* professions() { return m_professions; }
         Tweet* tweets() { return m_tweets; }
         Victim* victims() { return m_victims; }
+        Font font() { return m_font; }
 
         int categoryCount();
         int mailCount();
@@ -72,6 +74,7 @@ class Manager {
         Player* m_player = nullptr;
         Victim* m_victim = nullptr;
         Mail* m_mail = nullptr;
+        Font m_font = LoadFontEx("../resources/Roboto-Regular.ttf", 13, 0, 0);
 };
 
 

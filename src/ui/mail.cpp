@@ -7,6 +7,7 @@
 #include "../utils.h"
 #include "mail.h"
 #include "board.h"
+#include "../manager.h"
 
 using namespace std;
 
@@ -36,9 +37,13 @@ void GUI_Mail::update() {
     // create a buffer with room for the new line characters
     char* buffer = new char[rawContent.length() + 10];
     // generate a new char[] with \n characters
-    char* wrappedContent = word_wrap(buffer, content, 77);
+    char* wrappedContent = word_wrap(buffer, content, 70);
 
-    GuiTextBoxMulti(contentBounds(), wrappedContent, 10, false);
+    DrawRectangleLines(contentBounds().x, contentBounds().y, contentBounds().width, contentBounds().height, BLACK);
+    /* DrawText(wrappedContent, contentBounds().x + 10, contentBounds().y + 10, 12, BLACK); */
+    Vector2 textPos {contentBounds().x + 10, contentBounds().y + 10};
+    DrawTextEx(Manager::getInstance().font(), wrappedContent, textPos, 13, 1, BLACK);
+    /* GuiTextBoxMulti(contentBounds(), wrappedContent, 10, false); */
 
     //draw Send button
     if(GuiButton( buttonBounds(), "SEND"))
