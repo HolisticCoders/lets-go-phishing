@@ -104,17 +104,14 @@ void Manager::endTurn() {
 void Manager::trashMail(Mail* mail) {
     auto it = find(m_mails.begin(), m_mails.end(), mail);
     int index = distance(m_mails.begin(), it);
-    cout << "Index of mail to trash: " << index << endl;
     deque<Mail*> tmpMails;
 
     // Fill the front of the queue, then grab the fifth (index 4)
     // mail and put it at the trashed mail index.
     for (int i = 0; i < index; i++) {
         tmpMails.push_back(m_mails[i]);
-        cout << "Adding Top: " << m_mails[i]->title() << endl;
     }
     tmpMails.push_back(m_mails[4]);
-    cout << "Adding Next: " << m_mails[4]->title() << endl;
 
     // Now fill the remaining of the queue and push
     // the trashed mail back.
@@ -123,10 +120,8 @@ void Manager::trashMail(Mail* mail) {
             i = 5;
         }
         tmpMails.push_back(m_mails[i]);
-        cout << "Adding Remainder: " << m_mails[i]->title() << endl;
     }
     tmpMails.push_back(m_mails[index]);
-    cout << "Adding Trashed: " << m_mails[index]->title() << endl;
 
     m_mails.swap(tmpMails);
 }
