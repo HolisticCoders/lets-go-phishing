@@ -148,7 +148,7 @@ void GUI_Board::drawMails() {
             continue;
         }
         cout << "Drawing mail for button " << button->label() << endl;
-        json data = m_resources->getResource("mails.json");
+        json data = *m_resources->mails();
         if (data.size() <= 0) {
             cout << "No mail could be drawn." << endl;
             return;
@@ -165,28 +165,18 @@ void GUI_Board::drawMails() {
 
 
 void GUI_Board::drawTweets() {
-    for (GUI_Tweet* tweet: m_guiTweets) {
-        if (tweet->tweet()) {
-            continue;
-        }
+    for (Tweet* tweet: m_tweets) {
         cout << "Drawing content for tweet." << endl;
-        json data = m_resources->getResource("tweets.json");
-        if (data.size() <= 0) {
-            cout << "No tweet could be drawn." << endl;
-            return;
-        }
+        json data = *m_resources->tweets();
         int index = GetRandomValue(0, data.size() - 1);
         const string victimName = data[index]["author"];
         const string content = data[index]["content"];
 
-        // Find the victim in the victims.json.
-        Victim* victim = new Victim();
-        victim->setName(victimName);
-        Tweet* tweetData = new Tweet(
-            victim,
-            content
-        );
-        tweet->setTweet(tweetData);
+        /* // Find the victim in the victims.json. */
+        /* Victim* victim = new Victim(); */
+        /* victim->setName(victimName); */
+        /* tweet->setAuthor(victim); */
+        /* tweet->setContent(content); */
     }
 }
 
