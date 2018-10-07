@@ -1,7 +1,37 @@
 [
     {
-        "title": "My Title",
-        "content": "Lorem Ipsum",
+        "title": "A gentleman's invitation",
+        "content": "Hi.\n\nSomeone told me you were looking for a poker table around the corner.\nLook no further, I can put you in touch with a dealer starting today.\nI will charge you $500 for the service, but this small entry fee is nothing compared to the thousands, or even tens of thousands, you will make at this table.\nPlease answer on short notice, as the chair will not remain vacant forever.\n\nYour middleman",
+        "category": "Gambling"
+    },
+    {
+        "title": "Awesome! Tesla Model S for under $1.500!!!",
+        "content": "Guess what I just found!\n\nTesla Model S cars are available for under $1.500! Buy one now before they go out-of-stock, contact the supplier at this address:\ncheap-tesla@xgarage.com\n\nYou won't be disappointed, I promise !",
+        "category": "Products"
+    },
+    {
+        "title": "Fatness preventing vaccines on the market.",
+        "content": "Hey there, your day to day benefactor here.\n\nI stumbled upon something that might interest you, a new kind of vaccines.\nThese ones do not target virus, but your own body fat ! This is awesome and will eventually undo all damage done by MockDonald's !!! You have to buy a bunch of those now before the government forbids them.\n\nYou an order some on this website:\n\nhttp://www.my-fat-reducers.nk",
         "category": "HealthCare"
+    },
+    {
+        "title": "Help out a soldier wife in mourning.",
+        "content": "Hi, this is Maria.\n\nNot so long ago my husband Rick, along with his best friend, went on a mission on foreign ground to help secure our borders.\nThis is the kind of mission my husband enrolled for. Fighting for his country, for his fellow citizens. For our security, and the chance to give everyone the freedom they deserve.\n\nMy husband have been on similar missions countless times, showing immense courage, unshakable morale and ruthless determination to the face of the ennemy. And he would always return with a gift for our two children and me.\n\nBut not this time.\nThis time, no gifts were to be found.\nThis time, he have not returned.\n\nAll I ask is a little financial support to help me pay for a funeral up to my husband war effort and contribution to our country's safety.\nI am proud to be his wife, even in these darker times.\n\nIf you want to contribute to a hero's funeral, you can contribute by sending some money on my PayPool account:\nmourning.maria@paypool.com\n\nSincerly, Maria",
+        "category": "SocialCare"
+    },
+    {
+        "title": "MockDonal's share for a dime!",
+        "content": "Quick! A MockDonald's former stockholder is re-selling its shares for almost nothing! Buy a bunch today, be filthy rich tommorow (or even this afternoon)!\nAnswer this email with the number of shares you want to buy ($40 per share) and I'll send you a link for a direct payment.\nHurry up, shares are selling in spades!",
+        "category": "Stocks"
+    },
+    {
+        "title": "Get your hands on this one...",
+        "content": "Whole new ways of enjoying yourself when the lights go out.\n\nBuy our premium HelixWanker and never again will you need a helping hand!\n\nGet big where it matters with the OnePound pump!\n\nEnhance your stamina with our Hourlastic Pleasurer!\n\nFor every toy you buy, we add some of our nasty adult goodies.\n\nShop now on our online store:\nhttp://www.adult-goodies.com",
+        "category": "Adult"
+    },
+    {
+        "title": "Samantha feels alone tonight...",
+        "content": "You have one unread message in your invoice.\n\n------------------------\nHi babe,\nI saw your profile you don't live far from my place...\nCare coming to comfort me in this cold evening?\nOr I could send you pics for a little warm-up? :)\n\nAnyway I'm on this IM app if you wanna chat about it: http://chat.blindfolds.com\nYeah it's like 50 bucks to create an account but it's a one time payment and then you're set. :p\n\nSee you tonight ? ;)",
+        "category": "Dating"
     }
 ]
