@@ -2,7 +2,7 @@
     {
         "name": "jane.doe",
         "avatarUrl": "jane.doe@gravatar.com",
-        "bio": "Hey there! Just your regular girl next door.",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur nunc urna, id facilisis erat rutrum sit amet. Aliquam bibendum venenatis ipsum, consectetur porttitor diam viverra id. Suspendisse et ornare ex. Aliquam eros lacus, pulvinar vel orci eu, ornare ullamcorper leo. Sed tincidunt enim neque, id laoreet erat eleifend a. Sed elementum cursus turpis sit amet scelerisque. Mauris condimentum nisi nulla, ac facilisis erat volutpat id. Ut scelerisque bibendum auctor. Nullam justo elit, cursus a maximus ut, molestie id erat. Sed tempor congue mi, eget vestibulum ipsum ullamcorper eu. Etiam tempor vehicula massa ac ultricies. Maecenas et elementum leo. Quisque id porta sapien. Duis molestie lectus et fringilla egestas.",
         "profession": "Teacher",
         "maritalStatus": "single",
         "children": 1,
