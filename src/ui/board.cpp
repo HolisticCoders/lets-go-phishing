@@ -51,12 +51,8 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
     // 1st tweet y position
     int y = 60;
     for (int i = 0; i < 5; i++) {
-<<<<<<< Updated upstream
-        /* m_tweets[i] = new Tweet(); */
-=======
         m_tweets[i] = new Tweet();
         m_tweets[i]->setAuthor(m_victim);
->>>>>>> Stashed changes
         m_guiTweets[i] = new GUI_Tweet();
         /* m_guiTweets[i]->setTweet(m_tweets[i]); */
         m_guiTweets[i]->setX(935);

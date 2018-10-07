@@ -43,7 +43,6 @@ class Victim {
         int money(){
             return m_money;
         }
-<<<<<<< Updated upstream
         void setName(const string name) {
             m_name = name;
         }
@@ -62,11 +61,6 @@ class Victim {
         void setMoney(const int money) {
             m_money = money;
         }
-=======
-        void setName(string name){
-            m_name = name;
-        }
->>>>>>> Stashed changes
     private:
         string m_name;
         string m_avatarUrl;
