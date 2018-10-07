@@ -41,6 +41,9 @@ class Manager {
         Tweet* tweets() { return m_tweets; }
         Victim* victims() { return m_victims; }
         Font font() { return m_font; }
+        Color lineColor() { return m_lineColor; }
+        Color textColor() { return m_textColor; }
+        Color focusColor() { return m_focusColor; }
 
         int categoryCount();
         int mailCount();
@@ -74,8 +77,13 @@ class Manager {
         Player* m_player = nullptr;
         Victim* m_victim = nullptr;
         Mail* m_mail = nullptr;
-        Font m_font = LoadFontEx("../resources/Roboto-Regular.ttf", 13, 0, 0);
-};
 
+        // ui stuff
+        Font m_font = LoadFontEx("../resources/Roboto-Regular.ttf", 13, 0, 0);
+        Color m_lineColor = (Color){144,171,181,255};
+        Color m_textColor = (Color){63,63,63,255};
+        Color m_focusColor = (Color){201,239,254,255};
+
+};
 
 #endif
