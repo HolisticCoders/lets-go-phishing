@@ -15,10 +15,10 @@ void GUI_Mail::sendMail(){
 void GUI_Mail::update() {
     // draw title
     char* title = (char*)m_mail->title().c_str();
-    GuiLabel(getTitleBounds(), title);
+    GuiLabel(titleBounds(), title);
     // draw content
     char* content = (char*)m_mail->content().c_str();
-    GuiTextBoxMulti(getContentBounds(), content, 10, false);
+    GuiTextBoxMulti(contentBounds(), content, 10, false);
     //draw Send button
     if(GuiButton( buttonBounds(), "SEND"))
         sendMail();
