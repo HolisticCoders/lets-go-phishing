@@ -30,13 +30,10 @@ void GUI_Button::update() {
 }
 
 void GUI_Button::onClick() {
-    if (!m_board) {
-        return;
-    }
     if (!m_mail) {
         return;
     }
-    m_board->setMail(m_mail);
+    m_manager.setMail(m_mail);
 }
 
 void GUI_Button::setPosition(const Vector2& position) {

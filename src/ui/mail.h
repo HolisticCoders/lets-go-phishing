@@ -2,19 +2,17 @@
 #define GUIMAIL_H
 
 #include "raylib.h"
-#include "../mail.h"
+#include "../manager.h"
 
 class GUI_Board;
 
 
 class GUI_Mail{
     public:
-        GUI_Mail(GUI_Board* board) : m_board{board} {};
+        GUI_Mail(GUI_Board& board) : m_board{board} {};
         void update();
         void sendMail();
 
-        GUI_Board* board() { return m_board; }
-        Mail* mail() { return m_mail; }
         Rectangle titleBounds(){
             const float x = m_x;
             const float y = m_y;
@@ -37,18 +35,14 @@ class GUI_Mail{
             return (Rectangle){x, y, width, height};
         }
 
-        void setBoard(GUI_Board* board) { m_board = board; }
-        void setMail(Mail* mail) {
-            m_mail = mail;
-        }
     private:
         int m_x = 35;
         int m_y = 60;
         int m_width = 405;
         int m_height = 515;
         Color m_color = LIGHTGRAY;
-        Mail* m_mail = nullptr;
-        GUI_Board* m_board = nullptr;
+        GUI_Board& m_board;
+        Manager& m_manager = Manager::getInstance();
 };
 
 #endif

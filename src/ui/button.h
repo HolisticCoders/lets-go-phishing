@@ -4,14 +4,14 @@
 #include <string>
 
 #include "raylib.h"
-#include "board.h"
+
+#include "../manager.h"
 
 
 using namespace std;
 
 
 class Mail;
-class GUI_Board;
 
 
 class GUI_Button {
@@ -24,17 +24,15 @@ class GUI_Button {
         string label() {return m_label;}
         Rectangle area() {return m_area;}
         Mail* mail() {return m_mail;}
-        GUI_Board* board() {return m_board;}
         void setPosition(const Vector2& position);
         void setSize(const Vector2& size);
         void setArea(const Rectangle& area) {m_area = area;}
         void setMail(Mail* mail);
-        void setBoard(GUI_Board& board) {m_board = &board;}
     private:
         string m_label;
         Rectangle m_area;
         Mail* m_mail = nullptr;
-        GUI_Board* m_board = nullptr;
+        Manager& m_manager = Manager::getInstance();
 };
 
 #endif

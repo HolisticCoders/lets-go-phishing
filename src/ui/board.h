@@ -35,7 +35,7 @@ class GUI_Board {
         void endTurn();
 
     private:
-        Manager* m_manager = nullptr;
+        Manager& m_manager = Manager::getInstance();
         bool m_closing = false;
         GUI_Button* m_buttons[4];
         GUI_Tweet* m_guiTweets[5];

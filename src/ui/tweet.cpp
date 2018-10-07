@@ -3,6 +3,9 @@
 
 void GUI_Tweet::update(){
     DrawRectangle(m_x, m_y, m_width, m_height, m_color);
+    if (!m_tweet) {
+        return;
+    }
     if (m_tweet->author()) {
         char* name = (char*)m_tweet->author()->name().c_str();
         GuiLabel(nameBounds(), name);

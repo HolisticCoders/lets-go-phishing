@@ -37,10 +37,6 @@ GUI_Board::GUI_Board() {
         (Rectangle){ 344, 655, 93, 30 }
     );
 
-    for (GUI_Button* button: m_buttons) {
-        button->setBoard(*this);
-    }
-
     // tweets setup
     // 1st tweet y position
     int y = 60;
@@ -52,12 +48,10 @@ GUI_Board::GUI_Board() {
     }
 
     // mail setup
-    m_guiMail = new GUI_Mail(this);
+    m_guiMail = new GUI_Mail(*this);
 
     // profile setup
     m_guiProfile = new GUI_Profile();
-
-    m_manager = &Manager::getInstance();
 }
 
 
@@ -93,9 +87,9 @@ void GUI_Board::update() {
     GuiLabel((Rectangle){ 935, 635, 36, 25 }, "Money:");
     GuiLabel((Rectangle){ 935, 655, 71, 25 }, "Wanted level:");
 
-    if (m_manager->player()) {
-        GuiSliderBar((Rectangle){ 1045, 660, 185, 15 }, m_manager->player()->wantedLevel(), 0, 100);
-        const char* money = std::to_string(m_manager->player()->money()).c_str();
+    if (m_manager.player()) {
+        GuiSliderBar((Rectangle){ 1045, 660, 185, 15 }, m_manager.player()->wantedLevel(), 0, 100);
+        const char* money = std::to_string(m_manager.player()->money()).c_str();
         GuiLabel((Rectangle){ 1045, 635, 161, 25 }, money);
     }
 
@@ -112,6 +106,9 @@ void GUI_Board::update() {
     for (int i=0; i<5; i++)
         m_guiTweets[i]->update();
 
+    // Initial draw.
+    drawMails();
+    drawTweets();
 }
 
 
@@ -122,8 +119,8 @@ void GUI_Board::drawMails() {
         if (button->mail()) {
             continue;
         }
-        int index = GetRandomValue(0, m_manager->mailCount() - 1);
-        Mail* mail = &m_manager->mails()[index];
+        int index = GetRandomValue(0, m_manager.mailCount() - 1);
+        Mail* mail = &m_manager.mails()[index];
         button->setMail(mail);
     }
 }
@@ -131,8 +128,8 @@ void GUI_Board::drawMails() {
 
 void GUI_Board::drawTweets() {
     for (GUI_Tweet* guiTweet: m_guiTweets) {
-        int index = GetRandomValue(0, m_manager->tweetCount() - 1);
-        Tweet* tweet = &m_manager->tweets()[index];
+        int index = GetRandomValue(0, m_manager.tweetCount() - 1);
+        Tweet* tweet = &m_manager.tweets()[index];
         guiTweet->setTweet(tweet);
     }
 }

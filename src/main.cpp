@@ -28,8 +28,6 @@ int main() {
     manager->setPlayer(&player);
     GUI_Board board;
 
-    Victim victim;
-
     while (true) {
 
         if (WindowShouldClose() || board.closing()) {
