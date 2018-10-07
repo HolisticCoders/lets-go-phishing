@@ -35,6 +35,10 @@ int main() {
             break;
         }
 
+        if (IsKeyPressed(KEY_F11)) {
+            ToggleFullscreen();
+        }
+
         BeginDrawing();
 
             ClearBackground(GetColor(style[DEFAULT_BACKGROUND_COLOR]));
