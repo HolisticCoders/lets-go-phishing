@@ -107,9 +107,9 @@ int Manager::victimCount() {
 void Manager::endTurn() {
     trashMail(m_mail);
     drawTweets();
-    Results results = spamResults(m_mail, m_victim);
-    m_player->addMoney(results.money);
-    m_player->addWantedLevel(results.wantedLevel);
+    Results* results = spamResults(m_mail, m_victim);
+    m_player->addMoney(results->money);
+    m_player->addWantedLevel(results->wantedLevel);
     m_board->showResults(results);
 }
 
@@ -159,7 +159,7 @@ void Manager::shuffleTweets() {
     shuffle(m_tweets.begin(), m_tweets.end(), default_random_engine(seed));
 }
 
-Results Manager::spamResults(Mail *mail, Victim *victim) {
-    return (Results){mail->reward(), mail->risk()};
+Results* Manager::spamResults(Mail *mail, Victim *victim) {
+    return new Results(mail->reward(), mail->risk(), "Your victim has been scamed ! However, you have been reported...");
 }
 

@@ -8,6 +8,7 @@
 
 #include "../manager.h"
 #include "../results.h"
+#include "../utils.h"
 
 // gui includes
 #include "board.h"
@@ -82,28 +83,7 @@ GUI_Board::~GUI_Board() {
 
 void GUI_Board::update() {
     if (m_turnResults) {
-        const float dialogWidth = 350;
-        const float dialogHeight = 150;
-        const Rectangle dialogBounds {
-            (GetScreenWidth() - dialogWidth) / 2,
-            (GetScreenHeight() - dialogHeight) / 2,
-            dialogWidth,
-            dialogHeight
-        };
-        const float buttonWidth = 120;
-        const float buttonHeight = 35;
-        const Rectangle buttonBounds {
-            dialogBounds.x + dialogWidth - buttonWidth - 10,
-            dialogBounds.y + dialogHeight - buttonHeight - 10,
-            buttonWidth,
-            buttonHeight
-        };
-        GuiWindowBox(dialogBounds, "Turn Results");
-        bool unpause = GuiButton(buttonBounds, "Next Turn");
-        if (unpause) {
-            m_manager.unpause();
-            m_turnResults = nullptr;
-        }
+        drawResults();
     }
     if (m_manager.isPaused()) {
         return;
@@ -140,8 +120,60 @@ void GUI_Board::update() {
         m_guiTweets[i]->update();
 }
 
-void GUI_Board::showResults(Results& results) {
+void GUI_Board::drawResults() {
+    const float dialogWidth = 350;
+    const float dialogHeight = 150;
+    const Rectangle dialogBounds {
+        (GetScreenWidth() - dialogWidth) / 2,
+        (GetScreenHeight() - dialogHeight) / 2,
+        dialogWidth,
+        dialogHeight
+    };
+    GuiWindowBox(dialogBounds, "Turn Results");
+
+    char* message = new char[m_turnResults->message.length()];
+    strcpy(message, m_turnResults->message.c_str());
+    char* buffer = new char[m_turnResults->message.length() + 10];
+    // generate a new char[] with \n characters
+    char* wrappedMessage = word_wrap(buffer, message, 55);
+    const Vector2 messagePos { dialogBounds.x + 10, dialogBounds.y + 35 };
+
+    string rawReward = "Reward: $" + to_string(m_turnResults->money);
+    char* reward = new char[rawReward.length()];
+    strcpy(reward, rawReward.c_str());
+    const Vector2 rewardPos { dialogBounds.x + 10, dialogBounds.y + 105 };
+
+    string rawWantedLevel = "Wanted: " + to_string(m_turnResults->wantedLevel) + "% more";
+    char* wantedLevel = new char[rawWantedLevel.length()];
+    strcpy(wantedLevel, rawWantedLevel.c_str());
+    const Vector2 wantedLevelPos { dialogBounds.x + 10, dialogBounds.y + 125 };
+
+    DrawTextEx(m_manager.font(), wrappedMessage, messagePos, 13, 1, m_manager.textColor());
+    DrawTextEx(m_manager.font(), reward, rewardPos, 13, 1, m_manager.textColor());
+    DrawTextEx(m_manager.font(), wantedLevel, wantedLevelPos, 13, 1, m_manager.textColor());
+
+    const float buttonWidth = 120;
+    const float buttonHeight = 35;
+    const Rectangle buttonBounds {
+        dialogBounds.x + dialogWidth - buttonWidth - 10,
+        dialogBounds.y + dialogHeight - buttonHeight - 10,
+        buttonWidth,
+        buttonHeight
+    };
+    bool unpause = GuiButton(buttonBounds, "Next Turn");
+    if (unpause) {
+        m_manager.unpause();
+        delete m_turnResults;
+        m_turnResults = nullptr;
+    }
+    delete [] message;
+    delete [] buffer;
+    delete [] reward;
+    delete [] wantedLevel;
+}
+
+void GUI_Board::showResults(Results* results) {
     m_manager.pause();
-    m_turnResults = &results;
+    m_turnResults = results;
 }
 

@@ -31,9 +31,10 @@ class GUI_Board {
 
         // Member functions
         void update();
-        void showResults(Results& results);
+        void showResults(Results* results);
 
     private:
+        void drawResults();
         Manager& m_manager = Manager::getInstance();
         bool m_closing = false;
         Results* m_turnResults = nullptr;

@@ -79,7 +79,7 @@ class Manager {
         void shuffleMails();
         void shuffleTweets();
         void trashMail(Mail* mail);
-        Results spamResults(Mail* mail, Victim* victim);
+        Results* spamResults(Mail* mail, Victim* victim);
         void endTurn();
 
     private:
