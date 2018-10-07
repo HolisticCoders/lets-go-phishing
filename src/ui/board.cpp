@@ -8,8 +8,12 @@
 
 #include "../player.h"
 #include "../mail.h"
+#include "../victim.h"
+
+// gui includes
 #include "board.h"
 #include "button.h"
+#include "profile.h"
 
 
 using namespace std;
@@ -54,11 +58,17 @@ GUI_Board::GUI_Board(Player* player) : m_player{player} {
     // mail setup
     m_guiMail = new GUI_Mail();
     m_guiMail->setMail(m_mail);
+
+    // profile setup
+    m_victim = new Victim();
+    m_guiProfile = new GUI_Profile();
+    m_guiProfile->setVictim(m_victim);
 }
 
 
 GUI_Board::~GUI_Board() {
     delete m_guiMail;
+    delete m_victim;
     for (GUI_Button* button: m_buttons) {
         if (button) {
             delete button;
@@ -104,9 +114,12 @@ void GUI_Board::update() {
 
     if (m_mail)
         m_guiMail->update();
+    if (m_guiProfile)
+        m_guiProfile->update();
 
     for (int i=0; i<5; i++)
         m_guiTweets[i]->update();
+
 }
 
 

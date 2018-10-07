@@ -9,10 +9,12 @@
 #include "../player.h"
 #include "../mail.h"
 #include "../tweet.h"
+#include "../victim.h"
 
 //ui includes
 #include "tweet.h"
 #include "mail.h"
+#include "profile.h"
 
 class GUI_Button;
 
@@ -25,6 +27,7 @@ class GUI_Board {
 
         // Accessors.
         Player* player() {return m_player;}
+        Victim* victim() {return m_victim;}
         Mail* mail() {return m_mail;}
         bool closing() {return m_closing;}
 
@@ -34,6 +37,10 @@ class GUI_Board {
             m_mail = mail;
             m_guiMail->setMail(mail);
         }
+        void setVictim(Victim* victim) {
+            m_victim = victim;
+            m_guiProfile->setVictim(victim);
+        }
         void setClosing(const bool& closing) {m_closing = closing;}
 
         // Member functions
@@ -42,12 +49,14 @@ class GUI_Board {
 
     private:
         Player* m_player;
+        Victim* m_victim = nullptr;
         Mail* m_mail = nullptr;
+        Tweet* m_tweets[5];
         bool m_closing = false;
         GUI_Button* m_buttons[4];
-        Tweet* m_tweets[5];
         GUI_Tweet* m_guiTweets[5];
         GUI_Mail* m_guiMail;
+        GUI_Profile* m_guiProfile;
 };
 
 #endif
