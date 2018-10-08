@@ -102,7 +102,7 @@ void GUI_Board::update() {
 
     if (m_manager.player()) {
         GuiProgressBar((Rectangle){ 1045, 660, 185, 15 }, m_manager.player()->wantedLevel(), 0, 100);
-        const char* money = std::to_string(m_manager.player()->money()).c_str();
+        const char* money = ("$" + std::to_string(m_manager.player()->money())).c_str();
         GuiLabel((Rectangle){ 1045, 635, 161, 25 }, money);
     }
 
