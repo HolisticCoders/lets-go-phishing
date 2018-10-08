@@ -111,6 +111,7 @@ void Manager::endTurn() {
     m_player->addMoney(results->money);
     m_player->addWantedLevel(results->wantedLevel);
     m_board->showResults(results);
+    m_mail = nullptr;
 }
 
 void Manager::trashMail(Mail* mail) {
@@ -160,6 +161,247 @@ void Manager::shuffleTweets() {
 }
 
 Results* Manager::spamResults(Mail *mail, Victim *victim) {
-    return new Results(mail->reward(), mail->risk(), "Your victim has been scamed ! However, you have been reported...");
+    // So this part is purely opinion based.
+    // It's was also done in a limited amount
+    // of time, with a great deal of mental
+    // fatigue, so some of the choices made
+    // here might be very conventional or
+    // totally whimsical.
+    //
+    // Basically we add a number of factors
+    // based on the category of the mail and
+    // the victim profile.
+    //
+    // When this is done, a little weighted
+    // radomness yields the results.
+    //
+    // TODO: Add a tag system on victims, mails
+    // and tweets to further customize the results.
+
+    cout << "Victim: " << victim->name() << endl;
+    cout << "Profession: " << victim->profession() << endl;
+    cout << "Marital Status: " << victim->maritalStatus() << endl;
+    cout << "Children: " << victim->children() << endl;
+    cout << "Account Balance: " << victim->money() << endl;
+    cout << "Mail Category: " << mail->category() << endl;
+
+    float bias = 0;
+    if (mail->category() == "Stocks") {
+        // The more you have, the more you want.
+        if (
+            victim->profession() == "Trader"
+            || victim->profession() == "Lobbyist"
+            || victim->profession() == "SalesPerson"
+        ) {
+            bias += .5;
+            cout << "Loving the stock money! (+.5)" << endl;
+        }
+        if (victim->money() > 10000) {
+            bias += .3;
+            cout << "Loving the stock money! (+.3)" << endl;
+        }
+        if (victim->money() > 1000000) {
+            bias += .5;
+            cout << "Loving the stock money! (+.5)" << endl;
+        }
+        if (victim->money() > 10000000) {
+            bias += .8;
+            cout << "Loving the stock money! (+.8)" << endl;
+        }
+    } else if (mail->category() == "Malware") {
+        // Those guys surely know you don't have
+        // to open these. Hopefully.
+        if (
+            victim->profession() == "Engineer"
+            || victim->profession() == "SoftwareDeveloper"
+            || victim->profession() == "SystemAdministrator"
+        ) {
+            bias -= .5;
+            cout << "Getting away from malware... (-.5)" << endl;
+        }
+    } else if (mail->category() == "HealthCare") {
+        // Who's not for health care ?
+        // By the way, less rich people are
+        // more subject to illness, so they
+        // take the bait easier on those spams.
+        bias += .1;
+        cout << "Money for a sore throat. (+.1)" << endl;
+        if (victim->children() > 0) {
+            bias += .2;
+            cout << "Money for a sore throat. (+.2)" << endl;
+        }
+        if (
+            victim->profession() == "Veterinarian"
+            || victim->profession() == "FireFighter"
+        ) {
+            bias += .2;
+            cout << "Money for a sore throat. (+.2)" << endl;
+        }
+        if (victim->money() < 1000) {
+            bias += .2;
+            cout << "Money for a sore throat. (+.2)" << endl;
+        }
+    } else if (mail->category() == "Dating") {
+        // Well... You know how it is.
+        // Some might fell good alone.
+        // Some might not.
+        // So it's a little bias, you know,
+        // sometimes it might be cool to hang out
+        // with somebody else.
+        if (
+            victim->maritalStatus() == "Single"
+            || victim->maritalStatus() == "Separated"
+            || victim->maritalStatus() == "Divorced"
+            || victim->maritalStatus() == "Widowed"
+        ) {
+            bias += .2;
+            cout << "Looking for your soul mate. (+.2)" << endl;
+        }
+    } else if (mail->category() == "Jobs") {
+        // Some jobs are really not that great.
+        // Some don't even have a job.
+        // So yeah, all in all it's always
+        // the same kind of people falling in here.
+        if (victim->money() < 1000) {
+            bias += .2;
+            cout << "Need a job! (+.2)" << endl;
+        }
+        if (
+            victim->profession() == "Cashier"
+            || victim->profession() == "GarbageCollector"
+        ) {
+            bias += .2;
+            cout << "Need a job! (+.2)" << endl;
+        }
+    } else if (mail->category() == "Phishing") {
+        // Everyone gets one of those sometime.
+        // A little bit carefree and you're phished.
+        bias += .1;
+        cout << "Hooked on phishing. :D (+.1)" << endl;
+        // But those guys are still prepared.
+        // I hope.
+        if (
+            victim->profession() == "Engineer"
+            || victim->profession() == "SoftwareDeveloper"
+            || victim->profession() == "SystemAdministrator"
+        ) {
+            bias -= .5;
+            cout << "This guy is not. D: (-.5)" << endl;
+        }
+    } else if (mail->category() == "Adult") {
+        // Like sex toys, enhancers, etc...
+        // Obviously it's a little bit more
+        // difficult to buy and hide those from
+        // the kids, so the victim might hesitate
+        // a bit before guying.
+        if (victim->children() > 0) {
+            bias -= .1;
+            cout << "Look away kids... :3 (-.1)" << endl;
+        }
+        // Still, as successful as dating sites.
+        // Or more, this is like a fallback when
+        // the "Dating" category fails to entertain. :D
+        if (
+            victim->maritalStatus() == "Single"
+            || victim->maritalStatus() == "Separated"
+            || victim->maritalStatus() == "Divorced"
+            || victim->maritalStatus() == "Widowed"
+        ) {
+            bias += .2;
+            cout << "Wanking is caring. (+.2)" << endl;
+        }
+    } else if (mail->category() == "Products") {
+        // All goods fall in this category, from
+        // groceries to spaceships (!).
+        // Yep, we even sell spaceships, how cool is that ?
+        // So in general, the more money you have,
+        // the more you can buy.
+        // Also, if you have a family to provide for and
+        // this leads to good deals, you'll more enclined
+        // to bite.
+        if (victim->children() > 1) {
+            bias += .2;
+            cout << "Yeah I need those, this is cheaper than Primark. (+.2)" << endl;
+        }
+        if (victim->maritalStatus() == "Maried") {
+            bias += .2;
+            cout << "Honey look how cheap it is on this website! (+.2)" << endl;
+        }
+        if (victim->money() > 5000) {
+            bias += .2;
+            cout << "I'm buying one. (+.2)" << endl;
+        }
+        if (victim->money() > 10000) {
+            bias += .3;
+            cout << "I'm buying two. (+.3)" << endl;
+        }
+        if (victim->money() > 1000000) {
+            bias += .5;
+            cout << "I'm buying everything. (+.5)" << endl;
+        }
+        if (victim->money() > 10000000) {
+            bias += .8;
+            cout << "I'm buying the compagny. (+.8)" << endl;
+        }
+        // And the usual suspects.
+        if (
+            victim->profession() == "Trader"
+            || victim->profession() == "Lobbyist"
+            || victim->profession() == "SalesPerson"
+        ) {
+            bias += .2;
+            cout << "Well let's add that to our collection. (+.2)" << endl;
+        }
+    } else if (mail->category() == "SocialCare"){
+        // Some very welcome help, what's not to
+        // like here ?
+        // Everyone starts with a little positive
+        // bias, some get a very negative one
+        // afterward to balance it.
+        bias += .2;
+        cout << "Thanks for the money. I love socialism. (+.2)" << endl;
+        if (victim->money() < 1000) {
+            bias += .1;
+            cout << "Actually, I need it really. (+.1)" << endl;
+        }
+        if (victim->money() > 10000) {
+            bias -= .3;
+            cout << "Just kidding, they're trying to make me poor. (-.3)" << endl;
+        }
+        if (victim->money() > 100000) {
+            bias -= .4;
+            cout << "Just kidding, they're trying to make me poor. OMG will the??? (-.4)" << endl;
+        }
+        if (
+            victim->profession() == "Trader"
+            || victim->profession() == "Lobbyist"
+            || victim->profession() == "SalesPerson"
+        ) {
+            bias -= .5;
+            cout << "Obviously, sarcasm. Failed state. (-.5)" << endl;
+        }
+    } else if (mail->category() == "Gambling"){
+        if (
+            victim->profession() == "Trader"
+        ) {
+            // It's like the essence of trading.
+            // Actually it's not, but who cares,
+            // we're making a game here.
+            bias += .3;
+            cout << "Yeah, well, a little risky, but I guess I'll try it. Just to be sure... (+.3)" << endl;
+        }
+        if (victim->money() > 100000) {
+            bias += .5;
+            cout << "Hell yeah, I like that! (+.5)" << endl;
+        }
+    }
+    cout << "Bias: " << bias << endl;
+    const int value = GetRandomValue(-100, 100);
+    bias += (float)value / 100;
+    cout << "Result: " << bias << endl;
+    if (bias > 0) {
+        return new Results(mail->reward(), 0, "Your victim has fallen prey to your mischievous intelligence...");
+    }
+    return new Results(0, mail->risk(), "Your victim didn't bite, you have been reported!");
 }
 
