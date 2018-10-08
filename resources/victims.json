@@ -4,53 +4,53 @@
         "avatarUrl": "jane.doe@gravatar.com",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur nunc urna, id facilisis erat rutrum sit amet. Aliquam bibendum venenatis ipsum, consectetur porttitor diam viverra id. Suspendisse et ornare ex. Aliquam eros lacus, pulvinar vel orci eu, ornare ullamcorper leo. Sed tincidunt enim neque, id laoreet erat eleifend a. Sed elementum cursus turpis sit amet scelerisque. Mauris condimentum nisi nulla, ac facilisis erat volutpat id. Ut scelerisque bibendum auctor. Nullam justo elit, cursus a maximus ut, molestie id erat. Sed tempor congue mi, eget vestibulum ipsum ullamcorper eu. Etiam tempor vehicula massa ac ultricies. Maecenas et elementum leo. Quisque id porta sapien. Duis molestie lectus et fringilla egestas.",
         "profession": "Teacher",
-        "maritalStatus": "single",
+        "maritalStatus": "Single",
         "children": 1,
-        "money": 500
+        "money": 1600
     },
     {
         "name": "John Wicked",
         "avatarUrl": "wicked.sick@gmail.com",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur nunc urna, id facilisis erat rutrum sit amet. Aliquam bibendum venenatis ipsum, consectetur porttitor diam viverra id. Suspendisse et ornare ex. Aliquam eros lacus, pulvinar vel orci eu, ornare ullamcorper leo. Sed tincidunt enim neque, id laoreet erat eleifend a. Sed elementum cursus turpis sit amet scelerisque. Mauris condimentum nisi nulla, ac facilisis erat volutpat id. Ut scelerisque bibendum auctor. Nullam justo elit, cursus a maximus ut, molestie id erat. Sed tempor congue mi, eget vestibulum ipsum ullamcorper eu. Etiam tempor vehicula massa ac ultricies. Maecenas et elementum leo. Quisque id porta sapien. Duis molestie lectus et fringilla egestas.",
-        "profession": "Teacher",
-        "maritalStatus": "single",
-        "children": 1,
-        "money": 500
+        "profession": "FireFighter",
+        "maritalStatus": "Divorced",
+        "children": 2,
+        "money": 2500
     },
     {
         "name": "William S.",
         "avatarUrl": "hamlet@gmail.com",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur nunc urna, id facilisis erat rutrum sit amet. Aliquam bibendum venenatis ipsum, consectetur porttitor diam viverra id. Suspendisse et ornare ex. Aliquam eros lacus, pulvinar vel orci eu, ornare ullamcorper leo. Sed tincidunt enim neque, id laoreet erat eleifend a. Sed elementum cursus turpis sit amet scelerisque. Mauris condimentum nisi nulla, ac facilisis erat volutpat id. Ut scelerisque bibendum auctor. Nullam justo elit, cursus a maximus ut, molestie id erat. Sed tempor congue mi, eget vestibulum ipsum ullamcorper eu. Etiam tempor vehicula massa ac ultricies. Maecenas et elementum leo. Quisque id porta sapien. Duis molestie lectus et fringilla egestas.",
-        "profession": "Teacher",
-        "maritalStatus": "single",
-        "children": 1,
-        "money": 500
+        "profession": "Chemist",
+        "maritalStatus": "Maried",
+        "children": 0,
+        "money": 3500
     },
     {
         "name": "Nathalie Torre",
         "avatarUrl": "nath.torre@aol.com",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur nunc urna, id facilisis erat rutrum sit amet. Aliquam bibendum venenatis ipsum, consectetur porttitor diam viverra id. Suspendisse et ornare ex. Aliquam eros lacus, pulvinar vel orci eu, ornare ullamcorper leo. Sed tincidunt enim neque, id laoreet erat eleifend a. Sed elementum cursus turpis sit amet scelerisque. Mauris condimentum nisi nulla, ac facilisis erat volutpat id. Ut scelerisque bibendum auctor. Nullam justo elit, cursus a maximus ut, molestie id erat. Sed tempor congue mi, eget vestibulum ipsum ullamcorper eu. Etiam tempor vehicula massa ac ultricies. Maecenas et elementum leo. Quisque id porta sapien. Duis molestie lectus et fringilla egestas.",
-        "profession": "Teacher",
-        "maritalStatus": "single",
-        "children": 1,
-        "money": 500
+        "profession": "Lawyer",
+        "maritalStatus": "Single",
+        "children": 0,
+        "money": 7500
     },
     {
         "name": "Esteban M.",
         "avatarUrl": "este.ban@yahoo.de",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur nunc urna, id facilisis erat rutrum sit amet. Aliquam bibendum venenatis ipsum, consectetur porttitor diam viverra id. Suspendisse et ornare ex. Aliquam eros lacus, pulvinar vel orci eu, ornare ullamcorper leo. Sed tincidunt enim neque, id laoreet erat eleifend a. Sed elementum cursus turpis sit amet scelerisque. Mauris condimentum nisi nulla, ac facilisis erat volutpat id. Ut scelerisque bibendum auctor. Nullam justo elit, cursus a maximus ut, molestie id erat. Sed tempor congue mi, eget vestibulum ipsum ullamcorper eu. Etiam tempor vehicula massa ac ultricies. Maecenas et elementum leo. Quisque id porta sapien. Duis molestie lectus et fringilla egestas.",
-        "profession": "Teacher",
-        "maritalStatus": "single",
-        "children": 1,
-        "money": 500
+        "profession": "Cashier",
+        "maritalStatus": "Single",
+        "children": 0,
+        "money": 700
     },
     {
         "name": "Jaimie D.",
         "avatarUrl": "lannisterfan@realms.com",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur nunc urna, id facilisis erat rutrum sit amet. Aliquam bibendum venenatis ipsum, consectetur porttitor diam viverra id. Suspendisse et ornare ex. Aliquam eros lacus, pulvinar vel orci eu, ornare ullamcorper leo. Sed tincidunt enim neque, id laoreet erat eleifend a. Sed elementum cursus turpis sit amet scelerisque. Mauris condimentum nisi nulla, ac facilisis erat volutpat id. Ut scelerisque bibendum auctor. Nullam justo elit, cursus a maximus ut, molestie id erat. Sed tempor congue mi, eget vestibulum ipsum ullamcorper eu. Etiam tempor vehicula massa ac ultricies. Maecenas et elementum leo. Quisque id porta sapien. Duis molestie lectus et fringilla egestas.",
-        "profession": "Teacher",
-        "maritalStatus": "single",
-        "children": 1,
-        "money": 500
+        "profession": "Lobbyist",
+        "maritalStatus": "Divorced",
+        "children": 3,
+        "money": 10000
     }
 ]
